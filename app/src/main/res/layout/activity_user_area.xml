@@ -14,7 +14,7 @@
         android:text="Welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tvWelcomeMsg"
+        android:id="@+id/gtWelcomeMsg"
         android:layout_marginTop="10dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -26,19 +26,19 @@
         android:layout_height="wrap_content"
         android:id="@+id/textView2"
         android:layout_marginTop="26dp"
-        android:layout_below="@+id/tvWelcomeMsg" />
+        android:layout_below="@+id/gtWelcomeMsg" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Name"
         android:ems="10"
         android:layout_marginTop="12dp"
         android:id="@+id/gtUsername"
         android:layout_below="@+id/textView2"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:hint="Name" />
 
     <TextView
         android:text="Age"
@@ -56,10 +56,10 @@
         android:inputType="number"
         android:ems="10"
         android:id="@+id/gtAge"
-        android:text="Age"
         android:layout_marginTop="9dp"
         android:layout_below="@+id/textView3"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:hint="Age" />
 
 </RelativeLayout>
