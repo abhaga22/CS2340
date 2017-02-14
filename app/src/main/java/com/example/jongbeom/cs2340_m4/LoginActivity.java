@@ -28,12 +28,21 @@ public class LoginActivity extends AppCompatActivity {
         final EditText gtPassword = (EditText) findViewById(R.id.gtPassword);
         final Button gtLogin = (Button) findViewById(R.id.gtLogin);
         final TextView registerLink = (TextView) findViewById(R.id.gtRegisterHere);
+        final Button cancel = (Button) findViewById(R.id.cancel);
 
         registerLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent registerIntent = new Intent(LoginActivity.this, RegisterActivity.class);
                 LoginActivity.this.startActivity(registerIntent);
+            }
+        });
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent cancelIntent = new Intent(LoginActivity.this, EndScreen.class);
+                LoginActivity.this.startActivity(cancelIntent);
             }
         });
 
