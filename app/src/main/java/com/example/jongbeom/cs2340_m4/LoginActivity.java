@@ -66,11 +66,30 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(LoginActivity.this, "Input Valid Success", Toast.LENGTH_LONG).show();
 
+                    Intent application = new Intent(LoginActivity.this, Application.class);
+                    LoginActivity.this.startActivity(application);
                 }
             }
 
         });
     }
+    // valid username or email
+    protected boolean validUsername(String username) {
+        String emailPattern = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+        Pattern pattern = Pattern.compile(emailPattern);
+        Matcher matcher = pattern.matcher(username);
+        return matcher.matches();
+    }
+
+    //valid password
+    protected boolean validPassword(String password) {
+        if (password != null && password.length() >9) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
 
 
 /*
@@ -116,17 +135,3 @@ public class LoginActivity extends AppCompatActivity {
 
         }
         */
-    protected boolean validUsername(String username) {
-        String emailPattern = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-        Pattern pattern = Pattern.compile(emailPattern);
-        Matcher matcher = pattern.matcher(username);
-        return matcher.matches();
-    }
-    protected boolean validPassword(String password) {
-        if (password != null && password.length() >10) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-}

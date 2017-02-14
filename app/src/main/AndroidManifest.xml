@@ -20,7 +20,8 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".UserAreaActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".EndScreen"></activity>
+        <activity android:name=".EndScreen" />
+        <activity android:name=".Application"></activity>
     </application>
 
 </manifest>

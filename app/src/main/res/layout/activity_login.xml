@@ -10,32 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.jongbeom.cs2340_m4.LoginActivity">
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/gtUsername"
-        android:hint="Username"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/gtPassword"
-        android:hint="Password"
-        android:layout_below="@+id/gtUsername"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
     <TextView
         android:text='Enter the user name and password. If not, click the botton "Register Here". Thanks!'
         android:layout_width="wrap_content"
@@ -55,18 +29,6 @@
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:text="Login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/gtLogin"
-        android:layout_marginTop="35dp"
-        android:layout_below="@+id/gtPassword"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="47dp"
-        android:layout_marginStart="47dp" />
-
-    <Button
         android:text="CANCEL"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -77,5 +39,55 @@
         android:layout_alignBottom="@+id/gtLogin"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="Username is your email. Passowrd is more than 10 letters."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textView4"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/gtUsername"
+        android:hint="Username"
+        android:layout_below="@+id/textView4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="23dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/gtPassword"
+        android:hint="Password"
+        android:layout_below="@+id/gtUsername"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:text="Login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/gtLogin"
+        android:layout_marginRight="49dp"
+        android:layout_marginEnd="49dp"
+        android:layout_below="@+id/gtPassword"
+        android:layout_toLeftOf="@+id/cancel"
+        android:layout_toStartOf="@+id/cancel"
+        android:layout_marginTop="42dp" />
 
 </RelativeLayout>
