@@ -78,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
         //String emailPattern = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
         //Pattern pattern = Pattern.compile(emailPattern);
         //Matcher matcher = pattern.matcher(username);
-        if (username.equals("test")) {
+        if (username.equals("user")) {
             return true;
         }
         //return matcher.matches();
@@ -88,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
     //valid password
     protected boolean validPassword(String password) {
         //if (password != null && password.length() >9) {
-        if (password.equals("password")) {
+        if (password.equals("pass")) {
             return true;
         } else {
             return false;
