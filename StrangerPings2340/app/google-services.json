@@ -1,0 +1,99 @@
+{
+  "project_info": {
+    "project_number": "520234100986",
+    "firebase_url": "https://water-app-96cf3.firebaseio.com",
+    "project_id": "water-app-96cf3",
+    "storage_bucket": "water-app-96cf3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:520234100986:android:7e2b72c525198fc8",
+        "android_client_info": {
+          "package_name": "com.CS2340.StrangerPings.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "520234100986-j6bjraospgcdgoqg73lgr8o87asi4o25.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.CS2340.StrangerPings.android",
+            "certificate_hash": "6611190686adc7256c97c553aa0cb7733d372714"
+          }
+        },
+        {
+          "client_id": "520234100986-uki5ocearlebvt06j81vr7iok9mmup14.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIV5fzoQIONqqT5FCLZr2KEP-S3z_-Uac"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "520234100986-uki5ocearlebvt06j81vr7iok9mmup14.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:520234100986:android:94a95e87d0d3a80b",
+        "android_client_info": {
+          "package_name": "com.StrangerPings2340.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "520234100986-fhoqcpkpuup6rfsa2ueah0o0pder0o4o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.StrangerPings2340.app",
+            "certificate_hash": "6611190686adc7256c97c553aa0cb7733d372714"
+          }
+        },
+        {
+          "client_id": "520234100986-uki5ocearlebvt06j81vr7iok9mmup14.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIV5fzoQIONqqT5FCLZr2KEP-S3z_-Uac"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "520234100986-uki5ocearlebvt06j81vr7iok9mmup14.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
