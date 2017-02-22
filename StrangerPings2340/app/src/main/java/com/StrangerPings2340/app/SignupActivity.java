@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -25,7 +24,6 @@ public class SignupActivity extends AppCompatActivity {
 
     private EditText inputEmail, inputPassword, inputAddress;
     private Button btnSignIn, btnSignUp;
-    private ProgressBar progressBar;
     private Spinner userSpinner;
     private FirebaseAuth auth;
     private FirebaseDatabase database;
@@ -44,7 +42,6 @@ public class SignupActivity extends AppCompatActivity {
         btnSignUp = (Button) findViewById(R.id.sign_up_button);
         inputEmail = (EditText) findViewById(R.id.email);
         inputPassword = (EditText) findViewById(R.id.password);
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
         userSpinner = (Spinner) findViewById(R.id.userSpinner);
         inputAddress = (EditText) findViewById(R.id.address);
 
@@ -87,27 +84,22 @@ public class SignupActivity extends AppCompatActivity {
 
 
 
-                progressBar.setVisibility(View.VISIBLE);
                 //create user
                 auth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                Toast.makeText(SignupActivity.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
-                                progressBar.setVisibility(View.GONE);
                                 // If sign in fails, display a message to the user. If sign in succeeds
                                 // the auth state listener will be notified and logic to handle the
                                 // signed in user can be handled in the listener.
                                 if (!task.isSuccessful()) {
-                                    Toast.makeText(SignupActivity.this, "Authentication failed." + task.getException(),
-                                            Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "Authentication failed.", Toast.LENGTH_SHORT).show();
                                 } else {
-
+                                    Toast.makeText(getApplicationContext(), "Registered!", Toast.LENGTH_SHORT).show();
                                     DatabaseReference ref = database.getReference();
-                                    ref.child("users").child(auth.getCurrentUser().getUid()).child("userType").setValue(userType);
+                                    ref.child("users").child(auth.getCurrentUser().getUid()).child("userType").setValue(userType.toString());
                                     ref.child("users").child(auth.getCurrentUser().getUid()).child("email").setValue(email);
                                     ref.child("users").child(auth.getCurrentUser().getUid()).child("address").setValue(address);
-
 
                                     startActivity(new Intent(SignupActivity.this, ProfileActivity.class));
                                     finish();
@@ -122,6 +114,5 @@ public class SignupActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        progressBar.setVisibility(View.GONE);
     }
 }
