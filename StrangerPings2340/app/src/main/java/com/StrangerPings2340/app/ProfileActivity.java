@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,11 +58,9 @@ public class ProfileActivity extends AppCompatActivity {
                 dbUserType = (String) (dataSnapshot.child("userType").getValue());
                 dbAddress = (String) dataSnapshot.child("address").getValue();
                 dbEmail = (String) dataSnapshot.child("email").getValue();
-                userType.setText(dbUserType.toString());
+                userType.setText(dbUserType);
                 address.setText(dbAddress);
                 email.setText(dbEmail);
-
-
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {

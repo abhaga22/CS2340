@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".ProfileActivity">
+    tools:context=".EditProfileActivity">
 
 
     <LinearLayout
@@ -20,7 +20,7 @@
 
 
         <TextView
-            android:text="Profile"
+            android:text="Edit Profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/profile"
@@ -90,18 +90,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/save"
-            android:layout_marginTop="10dp"
-            android:background="@color/colorPrimaryDark"
-            android:textColor="@android:color/black"
-            />
+            android:layout_marginTop="10dp" />
         <Button
             android:text="Back"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/back"
             android:layout_marginTop="10dp"
-            android:background="@color/colorPrimaryDark"
-            android:textColor="@android:color/black"
+
 
             />
 

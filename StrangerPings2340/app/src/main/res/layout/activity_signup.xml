@@ -4,14 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.StrangerPings2340.app.LoginActivity">
+    tools:context="com.StrangerPings2340.app.SignupActivity">
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="@color/colorPrimaryDark"
         android:gravity="center"
         android:orientation="vertical"
+        android:background="@color/backgroundRegistration"
         android:padding="@dimen/activity_horizontal_margin">
 
 
@@ -20,77 +20,42 @@
             android:layout_height="@dimen/logo_w_h"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="30dp"
-            android:src="@mipmap/ic_launcher"
+            android:src="@drawable/water"
             android:contentDescription="icon"/>
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
             <EditText
                 android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/email"
+                android:hint="@string/hint_email"
                 android:inputType="textEmailAddress"
-                android:maxLines="1"
-                android:textColor="@android:color/white" />
+                android:maxLines="1" />
 
-        </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <EditText
+            android:id="@+id/password"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_password"
+            android:inputType="textPassword"
+            android:maxLines="1" />
 
-            <EditText
-                android:id="@+id/password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:focusableInTouchMode="true"
-                android:hint="@string/hint_password"
-                android:imeOptions="actionUnspecified"
-                android:inputType="textPassword"
-                android:maxLines="1"
-                android:textColor="@android:color/white"
-                android:layout_weight="1" />
 
-        </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <EditText
+            android:id="@+id/address"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/address"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:focusableInTouchMode="true"
-                android:hint="Address"
-                android:imeOptions="actionUnspecified"
-                android:inputType="textPostalAddress"
-                android:maxLines="1"
-                android:textColor="@android:color/white"
-                android:layout_weight="1" />
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_address"
+            android:inputType="textPostalAddress"
+            android:maxLines="1" />
 
             <Spinner
                 android:id="@+id/userSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:focusableInTouchMode="true"
-                android:hint="@string/hint_password"
-                android:imeOptions="actionUnspecified"
-                android:inputType="textPassword"
-                android:maxLines="1"
-                android:textColor="@android:color/white"
-                android:layout_weight="1" />
-
-        </android.support.design.widget.TextInputLayout>
+                android:paddingTop="10dp" />
 
         <Button
             android:id="@+id/sign_up_button"
@@ -98,10 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:background="@color/colorAccent"
-            android:textColor="@android:color/black"
-            android:text="@string/action_sign_in_short"
-            android:textStyle="bold" />
+            android:text="@string/action_sign_in_short" />
 
 
         <!-- Link to Login Screen -->
@@ -112,17 +74,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
             android:background="@null"
+            android:layout_gravity="bottom"
             android:text="@string/btn_link_to_login"
             android:textAllCaps="false"
-            android:textColor="@color/white"
             android:textSize="15sp" />
     </LinearLayout>
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_gravity="center|bottom"
-        android:layout_marginBottom="20dp"
-        android:visibility="gone" />
+
 </android.support.design.widget.CoordinatorLayout>
