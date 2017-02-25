@@ -92,10 +92,10 @@
                 android:layout_marginTop="10dp" />
 
             <Button
-                android:text="@string/btn_sign_out"
+                android:text="Back"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/signOut"
+                android:id="@+id/back"
                 android:layout_marginTop="10dp" />
 
 

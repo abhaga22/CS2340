@@ -27,6 +27,7 @@ public class SignupActivity extends AppCompatActivity {
     private Spinner userSpinner;
     private FirebaseAuth auth;
     private FirebaseDatabase database;
+    private User localUser;
     private UserType userType;
 
     @Override
@@ -60,6 +61,7 @@ public class SignupActivity extends AppCompatActivity {
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
 
                 final String email = inputEmail.getText().toString().trim();
                 String password = inputPassword.getText().toString().trim();
@@ -97,11 +99,18 @@ public class SignupActivity extends AppCompatActivity {
                                 } else {
                                     Toast.makeText(getApplicationContext(), "Registered!", Toast.LENGTH_SHORT).show();
                                     DatabaseReference ref = database.getReference();
+
+                                    localUser = new User(email, address, userType);
+
+                                    ref.child("users").child(auth.getCurrentUser().getUid()).setValue(localUser);
+
+
                                     ref.child("users").child(auth.getCurrentUser().getUid()).child("userType").setValue(userType.toString());
                                     ref.child("users").child(auth.getCurrentUser().getUid()).child("email").setValue(email);
                                     ref.child("users").child(auth.getCurrentUser().getUid()).child("address").setValue(address);
 
-                                    startActivity(new Intent(SignupActivity.this, ProfileActivity.class));
+                                    Intent i = new Intent(SignupActivity.this, MainActivity.class);
+                                    startActivity(i);
                                     finish();
                                 }
                             }

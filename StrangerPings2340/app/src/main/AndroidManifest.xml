@@ -25,7 +25,10 @@
         </activity>
         <activity android:name=".SignupActivity" />
         <activity android:name=".ProfileActivity" />
-        <activity android:name=".EditProfileActivity"></activity>
+        <activity android:name=".EditProfileActivity" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".SubmitReportActivity"/>
+        <activity android:name=".ViewSourceReportsActivity"/>
     </application>
 
 </manifest>

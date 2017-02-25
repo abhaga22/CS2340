@@ -30,8 +30,9 @@ public class EditProfileActivity extends AppCompatActivity {
     private DatabaseReference dbRef;
     private EditText email, address;
     private TextView  userType;
-    private String dbUserType, dbAddress, dbEmail;
+
     private Button back, save;
+    private User localUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,21 +47,26 @@ public class EditProfileActivity extends AppCompatActivity {
         address = (EditText) findViewById(R.id.address);
         save = (Button) findViewById(R.id.save);
         back = (Button) findViewById(R.id.back);
-
+        localUser = getIntent().getParcelableExtra("LocalUser");
+        Log.d("localUser", localUser.toString());
         //get current user
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
+        userType.setText(localUser.getUserType().toString());
+        address.setText(localUser.getAddress());
+        email.setText(localUser.getEmail());
 
+
+        /*
         Query userTypeQuery = dbRef.child("users").child(user.getUid());
         userTypeQuery.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                dbUserType = (String) (dataSnapshot.child("userType").getValue());
-                dbAddress = (String) dataSnapshot.child("address").getValue();
-                dbEmail = (String) dataSnapshot.child("email").getValue();
-                userType.setText(dbUserType.toString());
-                address.setText(dbAddress);
-                email.setText(dbEmail);
+                localUser = dataSnapshot.getValue(User.class);
+
+                userType.setText(localUser.getUserType().toString());
+                address.setText(localUser.getAddress());
+                email.setText(localUser.getEmail());
 
 
             }
@@ -69,6 +75,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
             }
         });
+        */
 
         authListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -87,7 +94,7 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "Changes not saved!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(EditProfileActivity.this, ProfileActivity.class));
+                startActivity(new Intent(EditProfileActivity.this, MainActivity.class));
                 finish();
             }
         });
@@ -97,6 +104,7 @@ public class EditProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String emailText = email.getText().toString().trim();
                 String addressText = address.getText().toString().trim();
+
 
                 if (TextUtils.isEmpty(emailText)) {
                     Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
@@ -115,11 +123,13 @@ public class EditProfileActivity extends AppCompatActivity {
                                 }
                             }
                         });
-                dbRef.child("users").child(user.getUid()).child("email").setValue(emailText);
-                dbRef.child("users").child(user.getUid()).child("address").setValue(addressText);
+                localUser.setAddress(addressText);
+                localUser.setEmail(emailText);
+                Log.d("localUser", localUser.toString());
+                dbRef.child("users").child(user.getUid()).setValue(localUser);
 
                 Toast.makeText(getApplicationContext(), "Changes saved!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(EditProfileActivity.this, ProfileActivity.class));
+                startActivity(new Intent(EditProfileActivity.this, MainActivity.class));
                 finish();
             }
         });
