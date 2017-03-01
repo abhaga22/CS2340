@@ -105,7 +105,7 @@ public class SignupActivity extends AppCompatActivity {
                                     ref.child("users").child(auth.getCurrentUser().getUid()).setValue(localUser);
 
 
-                                    ref.child("users").child(auth.getCurrentUser().getUid()).child("userType").setValue(userType.toString());
+                                    ref.child("users").child(auth.getCurrentUser().getUid()).child("userType").setValue(userType);
                                     ref.child("users").child(auth.getCurrentUser().getUid()).child("email").setValue(email);
                                     ref.child("users").child(auth.getCurrentUser().getUid()).child("address").setValue(address);
 
