@@ -37,11 +37,11 @@ public class User implements Parcelable {
     }
 
 
-    public String getAddress() {
+    public String getUserAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setUserAddress(String address) {
         this.address = address;
     }
 

@@ -15,6 +15,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
+import com.google.android.gms.location.places.ui.PlaceSelectionListener;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,12 +39,13 @@ public class SubmitReportActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
     private DatabaseReference dbRef;
-    private EditText location;
+    //private EditText location;
     private Spinner waterCondition, waterType;
 
     private Button back, submit;
     private WaterSourceReport report;
     private User localUser;
+    private LatLng cleanWaterPlace;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +55,7 @@ public class SubmitReportActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         dbRef = FirebaseDatabase.getInstance().getReference();
-        location = (EditText) findViewById(R.id.location);
+        //location = (EditText) findViewById(R.id.location);
         submit = (Button) findViewById(R.id.submit);
         back = (Button) findViewById(R.id.back);
         localUser = getIntent().getParcelableExtra("LocalUser");
@@ -87,6 +93,24 @@ public class SubmitReportActivity extends AppCompatActivity {
             }
         };
 
+        PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
+                getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
+
+        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(Place place) {
+                cleanWaterPlace = place.getLatLng();
+
+                Log.i("Places", "Place: " + place.getAddress());
+            }
+
+            @Override
+            public void onError(Status status) {
+                // TODO: Handle the error.
+                Log.i("Places", "An error occurred: " + status);
+            }
+        });
+
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,16 +124,17 @@ public class SubmitReportActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String locationText = location.getText().toString();
+                //String locationText = location.getText().toString();
 
 
-
+                /**
                 if (TextUtils.isEmpty(locationText)) {
                     Toast.makeText(getApplicationContext(), "Enter location!", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                **/
 
-                report.setLocation(locationText);
+                report.setLocation(cleanWaterPlace);
                 report.setName(localUser.getEmail());
                 report.setTimestamp(System.currentTimeMillis());
                 report.setWaterType( (String) waterType.getSelectedItem());

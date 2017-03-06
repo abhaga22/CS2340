@@ -1,5 +1,7 @@
 package com.StrangerPings2340.app;
 
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.database.ServerValue;
 
 import java.util.Date;
@@ -13,7 +15,7 @@ public class WaterSourceReport {
 
     private long timestamp;
     private String name;
-    private String location;
+    private LatLng location;
     private String waterType;
     private String waterCondition;
     private int reportNumber;
@@ -44,11 +46,11 @@ public class WaterSourceReport {
         this.name = name;
     }
 
-    public String getLocation() {
+    public LatLng getLocation() {
         return location;
     }
 
-    public void setLocation(String location) {
+    public void setLocation(LatLng location) {
         this.location = location;
     }
 
@@ -70,8 +72,7 @@ public class WaterSourceReport {
 
 
     public String toString() {
-        return "Report " + Integer.toString(reportNumber) +
-                ":\n\nLocation: " + location + "\nWater Condition: " + waterCondition + "\n";
+        return "Water Type: " + waterType + "\nWater Condition: " + waterCondition + "\n";
     }
 
 

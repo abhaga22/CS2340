@@ -19,6 +19,7 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
+
         <TextView
             android:text="Submit A Water Report"
             android:layout_width="match_parent"
@@ -39,16 +40,12 @@
             android:paddingBottom="10dp"
             android:textStyle="normal|bold|italic" />
 
-        <EditText
-            android:text=""
-            android:layout_width="match_parent"
+        <fragment
+            android:id="@+id/place_autocomplete_fragment"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textPostalAddress"
-            android:id="@+id/location"
-            android:textAppearance="@android:style/TextAppearance.Material.Medium"
-            android:layout_gravity="right"
-            android:paddingBottom="20dp"/>
-
+            android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
+            tools:layout="@layout/place_autocomplete_fragment" />
 
         <TextView
             android:text="Water Type"

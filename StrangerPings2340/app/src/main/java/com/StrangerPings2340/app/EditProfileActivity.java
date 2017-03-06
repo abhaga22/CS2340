@@ -53,29 +53,10 @@ public class EditProfileActivity extends AppCompatActivity {
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         userType.setText(localUser.getUserType().toString());
-        address.setText(localUser.getAddress());
+        address.setText(localUser.getUserAddress());
         email.setText(localUser.getEmail());
 
 
-        /*
-        Query userTypeQuery = dbRef.child("users").child(user.getUid());
-        userTypeQuery.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                localUser = dataSnapshot.getValue(User.class);
-
-                userType.setText(localUser.getUserType().toString());
-                address.setText(localUser.getAddress());
-                email.setText(localUser.getEmail());
-
-
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-        */
 
         authListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -123,7 +104,7 @@ public class EditProfileActivity extends AppCompatActivity {
                                 }
                             }
                         });
-                localUser.setAddress(addressText);
+                localUser.setUserAddress(addressText);
                 localUser.setEmail(emailText);
                 Log.d("localUser", localUser.toString());
                 dbRef.child("users").child(user.getUid()).setValue(localUser);
