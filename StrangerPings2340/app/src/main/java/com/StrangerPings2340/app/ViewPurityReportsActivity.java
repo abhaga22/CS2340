@@ -21,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class ViewSourceReportsActivity extends AppCompatActivity {
+public class ViewPurityReportsActivity extends AppCompatActivity {
 
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
@@ -32,7 +32,7 @@ public class ViewSourceReportsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_source_reports);
+        setContentView(R.layout.activity_view_purity_reports);
 
 
 
@@ -48,28 +48,31 @@ public class ViewSourceReportsActivity extends AppCompatActivity {
 
 
 
-        Query waterSources = dbRef.child("waterSourceReports").orderByChild("timestamp");
+        Query waterSources = dbRef.child("waterPurityReports").orderByChild("timestamp");
         waterSources.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 int i = 1;
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    WaterSourceReport w = new WaterSourceReport();
+                    WaterPurityReport w = new WaterPurityReport();
                     w.setReportNumber(i);
                     w.setWaterCondition((String) snapshot.child("waterCondition").getValue());
-                    w.setWaterType((String) snapshot.child("waterType").getValue());
                     w.setLocation(new LatLng( (double) snapshot.child("location").child(
                             "latitude").getValue(), (double) snapshot.child("location").child(
                             "longitude").getValue() ));
                     w.setName((String) snapshot.child("name").getValue());
                     w.setAddressString((String) snapshot.child("addressString").getValue());
+                    Long cont = (Long) snapshot.child("contaminantPPM").getValue();
+                    w.setContaminantPPM(cont.intValue());
+                    Long vir = (Long) snapshot.child("virusPPM").getValue();
+                    w.setVirusPPM(vir.intValue());
                     w.setReportNumber(i);
 
                     reports.add(w.toString());
                     i++;
                 }
                 ListView waterReportList = (ListView) findViewById(R.id.waterReports);
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(ViewSourceReportsActivity.this, android.R.layout.simple_list_item_1, reports);
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(ViewPurityReportsActivity.this, android.R.layout.simple_list_item_1, reports);
 
                 waterReportList.setAdapter(adapter);
 
@@ -90,7 +93,7 @@ public class ViewSourceReportsActivity extends AppCompatActivity {
                 if (user == null) {
                     // user auth state is changed - user is null
                     // launch login activity
-                    startActivity(new Intent(ViewSourceReportsActivity.this, LoginActivity.class));
+                    startActivity(new Intent(ViewPurityReportsActivity.this, LoginActivity.class));
                     finish();
                 }
             }
@@ -100,7 +103,7 @@ public class ViewSourceReportsActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ViewSourceReportsActivity.this, MainActivity.class));
+                startActivity(new Intent(ViewPurityReportsActivity.this, MainActivity.class));
                 finish();
             }
         });

@@ -1,23 +1,19 @@
 package com.StrangerPings2340.app;
 
-import com.google.android.gms.location.places.Place;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.firebase.database.ServerValue;
-
-import java.util.Date;
-import java.util.Map;
 
 /**
  * Created by Rishab on 2/24/2017.
  */
 
-public class WaterSourceReport {
+public class WaterPurityReport {
 
     private long timestamp;
     private String name;
     private LatLng location;
-    private String waterType;
     private String waterCondition;
+    private int virusPPM;
+    private int contaminantPPM;
     private int reportNumber;
 
     public String getAddressString() {
@@ -30,7 +26,7 @@ public class WaterSourceReport {
 
     private String addressString;
 
-    public WaterSourceReport() {}
+    public WaterPurityReport() {}
 
     public int getReportNumber() {
         return reportNumber;
@@ -64,14 +60,6 @@ public class WaterSourceReport {
         this.location = location;
     }
 
-    public String getWaterType() {
-        return waterType;
-    }
-
-    public void setWaterType(String waterType) {
-        this.waterType = waterType;
-    }
-
     public String getWaterCondition() {
         return waterCondition;
     }
@@ -80,11 +68,28 @@ public class WaterSourceReport {
         this.waterCondition = waterCondition;
     }
 
+    public int getContaminantPPM() {
+        return contaminantPPM;
+    }
+
+    public void setContaminantPPM(int contaminantPPM) {
+        this.contaminantPPM = contaminantPPM;
+    }
+
+    public int getVirusPPM() {
+        return virusPPM;
+    }
+
+    public void setVirusPPM(int virusPPM) {
+        this.virusPPM = virusPPM;
+    }
+
 
     public String toString() {
-        return "Report " + Integer.toString(reportNumber) +
-                ":\n\n" + addressString + "\n\nWater Type: " +
-                waterType + "\n\nWater Condition: " + waterCondition;
+        return "Report " + Integer.toString(reportNumber) + ":\n\n" + addressString
+                + "\n\nWater Condition: " + waterCondition +
+                "\n\nVirus PPM: " + Integer.toString(virusPPM)+
+                "\n\nContaminant PPM: " + Integer.toString(contaminantPPM);
     }
 
 

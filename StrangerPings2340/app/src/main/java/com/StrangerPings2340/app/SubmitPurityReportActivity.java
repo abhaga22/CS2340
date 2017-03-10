@@ -1,18 +1,16 @@
 package com.StrangerPings2340.app;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.Status;
@@ -20,21 +18,12 @@ import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
 import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ServerValue;
-import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-
-public class SubmitReportActivity extends AppCompatActivity {
+public class SubmitPurityReportActivity extends AppCompatActivity {
 
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
@@ -43,14 +32,16 @@ public class SubmitReportActivity extends AppCompatActivity {
     private Spinner waterCondition, waterType;
 
     private Button back, submit;
-    private WaterSourceReport report;
+    private WaterPurityReport report;
     private User localUser;
     private LatLng cleanWaterPlace;
+    private String cleanWaterAddress;
+    private EditText virusPPM, contaminantPPM;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_submit_report);
-        report = new WaterSourceReport();
+        setContentView(R.layout.activity_submit_purity_report);
+        report = new WaterPurityReport();
 
 
         auth = FirebaseAuth.getInstance();
@@ -61,18 +52,15 @@ public class SubmitReportActivity extends AppCompatActivity {
         localUser = getIntent().getParcelableExtra("LocalUser");
         waterType = (Spinner) findViewById(R.id.waterType);
         waterCondition = (Spinner) findViewById(R.id.waterCondition);
+        virusPPM = (EditText) findViewById(R.id.virusPPM);
+        contaminantPPM = (EditText) findViewById(R.id.contaminantPPM);
+
+        String[] waterConditions = {"Safe", "Treatable", "Unsafe"};
 
 
-        String[] waterTypes = {"Bottled", "Well", "Stream", "Lake", "Spring", "Other"};
-        String[] waterConditions = {"Waste", "Treatable-Clear", "Treatable-Muddy", "Potable"};
-
-        ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, waterTypes);
+        ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, waterConditions);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        waterType.setAdapter(adapter);
-
-        ArrayAdapter<String> adapter2 = new ArrayAdapter(this,android.R.layout.simple_spinner_item, waterConditions);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        waterCondition.setAdapter(adapter2);
+        waterCondition.setAdapter(adapter);
 
 
 
@@ -87,7 +75,7 @@ public class SubmitReportActivity extends AppCompatActivity {
                 if (user == null) {
                     // user auth state is changed - user is null
                     // launch login activity
-                    startActivity(new Intent(SubmitReportActivity.this, LoginActivity.class));
+                    startActivity(new Intent(SubmitPurityReportActivity.this, LoginActivity.class));
                     finish();
                 }
             }
@@ -100,6 +88,7 @@ public class SubmitReportActivity extends AppCompatActivity {
             @Override
             public void onPlaceSelected(Place place) {
                 cleanWaterPlace = place.getLatLng();
+                cleanWaterAddress = place.getAddress().toString();
 
                 Log.i("Places", "Place: " + place.getAddress());
             }
@@ -116,7 +105,7 @@ public class SubmitReportActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "Changes not saved!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(SubmitReportActivity.this, MainActivity.class));
+                startActivity(new Intent(SubmitPurityReportActivity.this, MainActivity.class));
                 finish();
             }
         });
@@ -124,27 +113,35 @@ public class SubmitReportActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //String locationText = location.getText().toString();
+                int virusInt = Integer.parseInt(virusPPM.getText().toString());
+                int contaminantInt = Integer.parseInt(contaminantPPM.getText().toString());
 
 
-                /**
-                if (TextUtils.isEmpty(locationText)) {
-                    Toast.makeText(getApplicationContext(), "Enter location!", Toast.LENGTH_SHORT).show();
+
+                if (TextUtils.isEmpty(Integer.toString(virusInt))) {
+                    Toast.makeText(getApplicationContext(), "Enter virus PPM!", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                **/
+
+                if (TextUtils.isEmpty(Integer.toString(contaminantInt))) {
+                    Toast.makeText(getApplicationContext(), "Enter contaminant PPM!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
 
                 report.setLocation(cleanWaterPlace);
                 report.setName(localUser.getEmail());
                 report.setTimestamp(System.currentTimeMillis());
-                report.setWaterType( (String) waterType.getSelectedItem());
                 report.setWaterCondition((String) waterCondition.getSelectedItem());
+                report.setAddressString(cleanWaterAddress);
+                report.setContaminantPPM(contaminantInt);
+                report.setVirusPPM(virusInt);
 
 
-                dbRef.child("waterSourceReports").push().setValue(report);
+                dbRef.child("waterPurityReports").push().setValue(report);
 
                 Toast.makeText(getApplicationContext(), "Report submitted!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(SubmitReportActivity.this, MainActivity.class));
+                startActivity(new Intent(SubmitPurityReportActivity.this, MainActivity.class));
                 finish();
             }
         });

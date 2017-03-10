@@ -23,18 +23,41 @@
 
 
         <Button
-            android:text="Submit Water Report"
+            android:text="Submit Water Source Report"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/submitReport"
+            android:id="@+id/submitSourceReport"
             android:layout_marginTop="10dp" />
 
         <Button
-            android:text="View Water Reports"
+            android:text="Submit Water Purity Report"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/viewReports"
+            android:id="@+id/submitPurityReport"
+            android:layout_marginTop="10dp"
+            android:visibility="gone" />
+
+        <Button
+            android:text="View Source Map"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/viewMap"
             android:layout_marginTop="10dp" />
+
+        <Button
+            android:text="View Water Source Reports"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/viewSourceReports"
+            android:layout_marginTop="10dp" />
+
+        <Button
+            android:text="View Water Purity Reports"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/viewPurityReports"
+            android:layout_marginTop="10dp"
+            android:visibility="gone"/>
 
         <Button
             android:text="Edit Profile"

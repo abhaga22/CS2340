@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
     private DatabaseReference dbRef;
-    private Button viewReports, submitReport, signOut, editProfile;
+    private Button viewSourceReports, viewPurityReports, submitSourceReport, submitPurityReport, signOut, editProfile, viewMap;
     private User localUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +33,12 @@ public class MainActivity extends AppCompatActivity {
 
         signOut = (Button) findViewById(R.id.signOut);
         editProfile = (Button) findViewById(R.id.editProfile);
-        viewReports = (Button) findViewById(R.id.viewReports);
-        submitReport = (Button) findViewById(R.id.submitReport);
+        viewSourceReports = (Button) findViewById(R.id.viewSourceReports);
+        viewPurityReports = (Button) findViewById(R.id.viewPurityReports);
+        submitSourceReport = (Button) findViewById(R.id.submitSourceReport);
+        submitPurityReport = (Button) findViewById(R.id.submitPurityReport);
+
+        viewMap = (Button) findViewById(R.id.viewMap);
 
         //get current user
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -44,6 +48,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 localUser = dataSnapshot.getValue(User.class);
+                if (!localUser.getUserType().equals(UserType.USER)){
+                    submitPurityReport.setVisibility(View.VISIBLE);
+                }
+
+                if (localUser.getUserType().equals(UserType.MANAGER) ||
+                        localUser.getUserType().equals(UserType.ADMIN)) {
+                    viewPurityReports.setVisibility(View.VISIBLE);
+                }
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -83,7 +95,27 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        viewReports.setOnClickListener(new View.OnClickListener() {
+        viewSourceReports.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(MainActivity.this, ViewSourceReportsActivity.class));
+
+                finish();
+            }
+        });
+
+        viewPurityReports.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(MainActivity.this, ViewPurityReportsActivity.class));
+
+                finish();
+            }
+        });
+
+        viewMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -93,11 +125,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        submitReport.setOnClickListener(new View.OnClickListener() {
+
+
+        submitSourceReport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(MainActivity.this, SubmitReportActivity.class).putExtra(
+                startActivity(new Intent(MainActivity.this, SubmitSourceReportActivity.class).putExtra(
+                        "LocalUser", localUser));
+
+                finish();
+            }
+        });
+
+        submitPurityReport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(MainActivity.this, SubmitPurityReportActivity.class).putExtra(
                         "LocalUser", localUser));
 
                 finish();

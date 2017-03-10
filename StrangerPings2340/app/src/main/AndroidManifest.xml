@@ -34,8 +34,10 @@
         <activity android:name=".SignupActivity" />
         <activity android:name=".EditProfileActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".SubmitReportActivity" />
+        <activity android:name=".SubmitSourceReportActivity" />
         <activity android:name=".ViewSourceReportsActivity" />
+        <activity android:name=".ViewPurityReportsActivity" />
+        <activity android:name=".SubmitPurityReportActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -28,6 +29,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import com.google.firebase.database.Query;
@@ -55,6 +57,33 @@ public class ViewSourceReportMap extends FragmentActivity implements OnMapReadyC
     private FirebaseAuth auth;
     private GoogleApiClient mGoogleApiClient;
     private Location lastLocation;
+
+    class MyInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
+
+        private final View myContentsView;
+
+        MyInfoWindowAdapter(){
+            myContentsView = getLayoutInflater().inflate(R.layout.custom_info_contents, null);
+        }
+
+        @Override
+        public View getInfoContents(Marker marker) {
+
+            TextView title = ((TextView)myContentsView.findViewById(R.id.title));
+            title.setText(marker.getTitle());
+            //TextView snippet = ((TextView)myContentsView.findViewById(R.id.snippet));
+            //snippet.setText(marker.getSnippet());
+
+            return myContentsView;
+        }
+
+        @Override
+        public View getInfoWindow(Marker marker) {
+            // TODO Auto-generated method stub
+            return null;
+        }
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,6 +155,8 @@ public class ViewSourceReportMap extends FragmentActivity implements OnMapReadyC
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        mMap.setInfoWindowAdapter(new MyInfoWindowAdapter());
+
         reports = new ArrayList<>();
 
         Query waterSources = dbRef.child("waterSourceReports").orderByChild("timestamp");
@@ -142,13 +173,13 @@ public class ViewSourceReportMap extends FragmentActivity implements OnMapReadyC
                             "latitude").getValue(), (double) snapshot.child("location").child(
                             "longitude").getValue() ));
                     w.setName((String) snapshot.child("name").getValue());
-
+                    w.setAddressString((String) snapshot.child("addressString").getValue());
                     w.setReportNumber(i);
 
                     Log.d("waterSource", w.getLocation().toString());
                     reports.add(w);
 
-                    mMap.addMarker(new MarkerOptions().position(w.getLocation()).title("Report").snippet(w.toString()));
+                    mMap.addMarker(new MarkerOptions().position(w.getLocation()).title(w.toString()));
 
                     i++;
 
