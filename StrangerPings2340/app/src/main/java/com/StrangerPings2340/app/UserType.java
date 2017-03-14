@@ -11,7 +11,10 @@ public enum UserType {
     ADMIN ("Admin");
 
     private final String userType;
-
+    /**
+     * Creates a user Constructor
+     * @param userType  to store user type
+     */
     UserType(String userType) {
         this.userType = userType;
     }
