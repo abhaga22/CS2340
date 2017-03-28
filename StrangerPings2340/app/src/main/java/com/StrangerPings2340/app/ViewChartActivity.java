@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.ScatterChart;
 import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
@@ -124,6 +125,9 @@ public class ViewChartActivity extends AppCompatActivity {
         xAxis.setAxisMinimum(0);
         xAxis.setGranularityEnabled(true);
         xAxis.setGranularity(1f);
+        Description none = new Description();
+        none.setText("");
+        scatterChart.setDescription(none);
 
 
         AdapterView.OnItemSelectedListener select = new AdapterView.OnItemSelectedListener() {
