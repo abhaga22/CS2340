@@ -21,7 +21,8 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
     private DatabaseReference dbRef;
-    private Button viewSourceReports, viewPurityReports, submitSourceReport, submitPurityReport, signOut, editProfile, viewMap;
+    private Button viewSourceReports, viewPurityReports, submitSourceReport, submitPurityReport,
+            signOut, editProfile, viewMap, viewChart;
     private User localUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         viewPurityReports = (Button) findViewById(R.id.viewPurityReports);
         submitSourceReport = (Button) findViewById(R.id.submitSourceReport);
         submitPurityReport = (Button) findViewById(R.id.submitPurityReport);
+        viewChart = (Button) findViewById(R.id.viewChart);
 
         viewMap = (Button) findViewById(R.id.viewMap);
 
@@ -54,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if (localUser.getUserType().equals(UserType.MANAGER) ||
                         localUser.getUserType().equals(UserType.ADMIN)) {
+                    viewChart.setVisibility(View.VISIBLE);
                     viewPurityReports.setVisibility(View.VISIBLE);
                 }
             }
@@ -144,6 +147,16 @@ public class MainActivity extends AppCompatActivity {
 
                 startActivity(new Intent(MainActivity.this, SubmitPurityReportActivity.class).putExtra(
                         "LocalUser", localUser));
+
+                finish();
+            }
+        });
+
+        viewChart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(MainActivity.this, ViewChartActivity.class));
 
                 finish();
             }

@@ -52,7 +52,11 @@
 
         <activity
             android:name=".ViewSourceReportMap"
-            android:label="@string/title_activity_view_source_report_map"></activity>
+            android:label="@string/title_activity_view_source_report_map" />
+        <activity
+            android:name=".ViewChartActivity"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>

@@ -139,6 +139,7 @@ public class SubmitPurityReportActivity extends AppCompatActivity {
 
 
                 dbRef.child("waterPurityReports").push().setValue(report);
+                dbRef.child("waterPurityReportsLocations").child(report.getAddressString()).setValue(1);
 
                 Toast.makeText(getApplicationContext(), "Report submitted!", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(SubmitPurityReportActivity.this, MainActivity.class));

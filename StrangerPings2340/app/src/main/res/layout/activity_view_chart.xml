@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".EditProfileActivity">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/locationLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:text="Locations"
+            android:textAppearance="@android:style/TextAppearance.Material.Medium"
+            android:textStyle="normal|bold|italic" />
+
+        <Spinner
+            android:id="@+id/locSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/locationLabel"
+            >
+
+        </Spinner>
+
+        <TextView
+            android:id="@+id/yearLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/locSpinner"
+            android:text="Year"
+            android:textAppearance="@android:style/TextAppearance.Material.Medium"
+            android:textStyle="normal|bold|italic" />
+
+        <Spinner
+            android:id="@+id/yearSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_below="@id/yearLabel">
+
+        </Spinner>
+
+        <TextView
+            android:id="@+id/dataLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/yearSpinner"
+            android:text="Data"
+            android:textAppearance="@android:style/TextAppearance.Material.Medium"
+            android:textStyle="normal|bold|italic" />
+
+        <Spinner
+            android:id="@+id/dataSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dataLabel">
+
+        </Spinner>
+
+        <com.github.mikephil.charting.charts.ScatterChart
+            android:id="@+id/scatterChart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/dataSpinner"
+            android:layout_above="@id/back">
+
+        </com.github.mikephil.charting.charts.ScatterChart>
+
+
+        <Button
+            android:text="Back"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/back"
+            android:layout_alignParentBottom="true"
+            ></Button>
+
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>

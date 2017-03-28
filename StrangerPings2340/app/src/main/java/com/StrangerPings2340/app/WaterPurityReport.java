@@ -15,6 +15,12 @@ public class WaterPurityReport {
     private int virusPPM;
     private int contaminantPPM;
     private int reportNumber;
+    private String addressString;
+
+    /**
+     * Default Constructor
+     */
+    public WaterPurityReport() {}
 
     /**
      * Getter method for address as String
@@ -31,12 +37,7 @@ public class WaterPurityReport {
         this.addressString = addressString;
     }
 
-    private String addressString;
 
-    /**
-     * Default Constructor
-     */
-    public WaterPurityReport() {}
     /**
      * Getter method for report number
      * @return the Report Number
