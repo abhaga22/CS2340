@@ -62,7 +62,7 @@ public class ViewChartActivity extends AppCompatActivity {
         ArrayList<String> years = new ArrayList<String>();
 
         int thisYear = Calendar.getInstance().get(Calendar.YEAR);
-        for (int i = 2000; i <= thisYear; i++) {
+        for (int i = 2016; i <= thisYear; i++) {
             years.add(Integer.toString(i));
         }
         ArrayAdapter<String> yearAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, years);
@@ -103,8 +103,6 @@ public class ViewChartActivity extends AppCompatActivity {
 
         scatterChart = (ScatterChart) findViewById(R.id.scatterChart);
 
-
-
         IAxisValueFormatter MyXAxisValueFormatter  = new IAxisValueFormatter() {
 
             String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun",
@@ -112,38 +110,36 @@ public class ViewChartActivity extends AppCompatActivity {
 
             @Override
             public String getFormattedValue(float value, AxisBase axis) {
-               return months[(int) value];
+                return months[(int) value];
             }
         };
 
         XAxis xAxis = scatterChart.getXAxis();
-
         YAxis leftAxis = scatterChart.getAxisLeft();
         YAxis rightAxis = scatterChart.getAxisRight();
-
         leftAxis.setAxisMinimum(0);
         rightAxis.setAxisMinimum(0);
-
         xAxis.setValueFormatter(MyXAxisValueFormatter);
-        xAxis.setGranularity(1f);
-        xAxis.setDrawGridLines(false);
         xAxis.setAxisMaximum(11);
         xAxis.setAxisMinimum(0);
+        xAxis.setGranularityEnabled(true);
+        xAxis.setGranularity(1f);
 
 
         AdapterView.OnItemSelectedListener select = new AdapterView.OnItemSelectedListener() {
         @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected(final AdapterView<?> parent, View view, int position, long id) {
 
-
-                final String locVal = placeSpinner.getSelectedItem().toString();
-                final int yearVal = Integer.parseInt(yearSpinner.getSelectedItem().toString());
-                final String dataVal = dataSpinner.getSelectedItem().toString();
+                scatterChart.clear();
 
                 Query reports = dbRef.child("waterPurityReports").orderByChild("timestamp");
                 reports.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
+
+                        int yearVal = Integer.parseInt(yearSpinner.getSelectedItem().toString());
+                        String locVal = placeSpinner.getSelectedItem().toString();
+                        String dataVal = dataSpinner.getSelectedItem().toString();
 
                         ArrayList<Entry> virusEntries = new ArrayList<>();
                         ArrayList<Entry> contEntries = new ArrayList<>();
@@ -157,6 +153,8 @@ public class ViewChartActivity extends AppCompatActivity {
                         int[] reportsPerMonth = new int[12];
 
                         for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
+
+
                             String addressString = (String) snapshot.child("addressString").getValue();
                             long contaminant = (Long) snapshot.child("contaminantPPM").getValue();
                             long virus = (Long) snapshot.child("virusPPM").getValue();
@@ -174,7 +172,6 @@ public class ViewChartActivity extends AppCompatActivity {
                             }
 
                         }
-
                         for (int i = 0; i < reportsPerMonth.length; i++) {
                             if (reportsPerMonth[i] != 0) {
                                 double avgVirus = (monthsVirus[i] * 1.0)/reportsPerMonth[i];
@@ -195,10 +192,9 @@ public class ViewChartActivity extends AppCompatActivity {
                             dataSet2.setColors(ColorTemplate.MATERIAL_COLORS);
                             scatterChart.setData(lineData);
                             scatterChart.invalidate();
+                        } else {
+
                         }
-
-
-
 
                     }
                     @Override
@@ -218,8 +214,6 @@ public class ViewChartActivity extends AppCompatActivity {
         yearSpinner.setOnItemSelectedListener(select);
         placeSpinner.setOnItemSelectedListener(select);
         dataSpinner.setOnItemSelectedListener(select);
-
-
 
 
         authListener = new FirebaseAuth.AuthStateListener() {
