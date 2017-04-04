@@ -25,9 +25,6 @@ public class ViewSourceReportsActivity extends AppCompatActivity {
 
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
-    private DatabaseReference dbRef;
-
-    private Button back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,16 +34,11 @@ public class ViewSourceReportsActivity extends AppCompatActivity {
 
 
         auth = FirebaseAuth.getInstance();
-        dbRef = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
 
-        back = (Button) findViewById(R.id.back);
+        Button back = (Button) findViewById(R.id.back);
 
         final ArrayList<String> reports = new ArrayList<>();
-
-        //get current user
-        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-
 
         Query waterSources = dbRef.child("waterSourceReports").orderByChild("timestamp");
         waterSources.addValueEventListener(new ValueEventListener() {
@@ -69,7 +61,7 @@ public class ViewSourceReportsActivity extends AppCompatActivity {
                     i++;
                 }
                 ListView waterReportList = (ListView) findViewById(R.id.waterReports);
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(ViewSourceReportsActivity.this, android.R.layout.simple_list_item_1, reports);
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(ViewSourceReportsActivity.this, android.R.layout.simple_list_item_1, reports);
 
                 waterReportList.setAdapter(adapter);
 

@@ -20,9 +20,9 @@ public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
-    private DatabaseReference dbRef;
-    private Button viewSourceReports, viewPurityReports, submitSourceReport, submitPurityReport,
-            signOut, editProfile, viewMap, viewChart;
+    private Button viewPurityReports;
+    private Button submitPurityReport;
+    private Button viewChart;
     private User localUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,21 +30,22 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         auth = FirebaseAuth.getInstance();
-        dbRef = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
 
-        signOut = (Button) findViewById(R.id.signOut);
-        editProfile = (Button) findViewById(R.id.editProfile);
-        viewSourceReports = (Button) findViewById(R.id.viewSourceReports);
+        Button signOut = (Button) findViewById(R.id.signOut);
+        Button editProfile = (Button) findViewById(R.id.editProfile);
+        Button viewSourceReports = (Button) findViewById(R.id.viewSourceReports);
         viewPurityReports = (Button) findViewById(R.id.viewPurityReports);
-        submitSourceReport = (Button) findViewById(R.id.submitSourceReport);
+        Button submitSourceReport = (Button) findViewById(R.id.submitSourceReport);
         submitPurityReport = (Button) findViewById(R.id.submitPurityReport);
         viewChart = (Button) findViewById(R.id.viewChart);
 
-        viewMap = (Button) findViewById(R.id.viewMap);
+        Button viewMap = (Button) findViewById(R.id.viewMap);
 
         //get current user
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
+        @SuppressWarnings("ConstantConditions")
         Query userTypeQuery = dbRef.child("users").child(user.getUid());
         userTypeQuery.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

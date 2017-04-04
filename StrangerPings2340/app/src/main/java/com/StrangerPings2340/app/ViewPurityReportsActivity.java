@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -26,9 +25,6 @@ public class ViewPurityReportsActivity extends AppCompatActivity {
 
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
-    private DatabaseReference dbRef;
-
-    private Button back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,16 +34,11 @@ public class ViewPurityReportsActivity extends AppCompatActivity {
 
 
         auth = FirebaseAuth.getInstance();
-        dbRef = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
 
-        back = (Button) findViewById(R.id.back);
+        Button back = (Button) findViewById(R.id.back);
 
         final ArrayList<String> reports = new ArrayList<>();
-
-        //get current user
-        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-
 
         Query waterSources = dbRef.child("waterPurityReports").orderByChild("timestamp");
         waterSources.addValueEventListener(new ValueEventListener() {
@@ -73,7 +64,7 @@ public class ViewPurityReportsActivity extends AppCompatActivity {
                     i++;
                 }
                 ListView waterReportList = (ListView) findViewById(R.id.waterReports);
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(ViewPurityReportsActivity.this, android.R.layout.simple_list_item_1, reports);
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(ViewPurityReportsActivity.this, android.R.layout.simple_list_item_1, reports);
 
                 waterReportList.setAdapter(adapter);
 

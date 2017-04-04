@@ -1,7 +1,6 @@
 package com.StrangerPings2340.app;
 
 import android.content.Intent;
-import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,7 +22,6 @@ import com.google.firebase.database.FirebaseDatabase;
 public class SignupActivity extends AppCompatActivity {
 
     private EditText inputEmail, inputPassword, inputAddress;
-    private Button btnSignIn, btnSignUp;
     private Spinner userSpinner;
     private FirebaseAuth auth;
     private FirebaseDatabase database;
@@ -39,14 +37,14 @@ public class SignupActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
 
-        btnSignIn = (Button) findViewById(R.id.sign_in_button);
-        btnSignUp = (Button) findViewById(R.id.sign_up_button);
+        Button btnSignIn = (Button) findViewById(R.id.sign_in_button);
+        Button btnSignUp = (Button) findViewById(R.id.sign_up_button);
         inputEmail = (EditText) findViewById(R.id.email);
         inputPassword = (EditText) findViewById(R.id.password);
         userSpinner = (Spinner) findViewById(R.id.userSpinner);
         inputAddress = (EditText) findViewById(R.id.address);
 
-        ArrayAdapter<UserType> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, UserType.values());
+        ArrayAdapter<UserType> adapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, UserType.values());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         userSpinner.setAdapter(adapter);
 
@@ -89,6 +87,7 @@ public class SignupActivity extends AppCompatActivity {
                 //create user
                 auth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
+                            @SuppressWarnings("ConstantConditions")
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 // If sign in fails, display a message to the user. If sign in succeeds
@@ -116,8 +115,4 @@ public class SignupActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
 }

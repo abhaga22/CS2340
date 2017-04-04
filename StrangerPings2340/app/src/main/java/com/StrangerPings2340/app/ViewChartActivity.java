@@ -4,14 +4,11 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.ScatterChart;
 import com.github.mikephil.charting.components.AxisBase;
@@ -23,7 +20,6 @@ import com.github.mikephil.charting.data.ScatterData;
 import com.github.mikephil.charting.data.ScatterDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
-import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -33,10 +29,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 public class ViewChartActivity extends AppCompatActivity {
 
@@ -46,7 +40,6 @@ public class ViewChartActivity extends AppCompatActivity {
     private DatabaseReference dbRef;
     private Spinner placeSpinner, yearSpinner, dataSpinner;
     private ArrayList<String> placeArray;
-    private Button back;
 
 
     @Override
@@ -58,30 +51,27 @@ public class ViewChartActivity extends AppCompatActivity {
         dbRef = FirebaseDatabase.getInstance().getReference();
         placeArray = new ArrayList<>();
         placeSpinner = (Spinner) findViewById(R.id.locSpinner);
-        back = (Button) findViewById(R.id.back);
+        Button back = (Button) findViewById(R.id.back);
 
-        ArrayList<String> years = new ArrayList<String>();
+        ArrayList<String> years = new ArrayList<>();
 
         int thisYear = Calendar.getInstance().get(Calendar.YEAR);
         for (int i = 2016; i <= thisYear; i++) {
             years.add(Integer.toString(i));
         }
-        ArrayAdapter<String> yearAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, years);
+        ArrayAdapter<String> yearAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, years);
         yearSpinner = (Spinner)findViewById(R.id.yearSpinner);
         yearSpinner.setAdapter(yearAdapter);
 
 
-        ArrayList<String> data = new ArrayList<String>();
+        ArrayList<String> data = new ArrayList<>();
         data.add("Virus");
         data.add("Contaminant");
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, data);
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, data);
         dataSpinner = (Spinner)findViewById(R.id.dataSpinner);
         dataSpinner.setAdapter(dataAdapter);
 
 
-
-
-        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         Query waterSources = dbRef.child("waterPurityReportsLocations").orderByKey();
         waterSources.addValueEventListener(new ValueEventListener() {
@@ -90,7 +80,7 @@ public class ViewChartActivity extends AppCompatActivity {
                 for(DataSnapshot snap: dataSnapshot.getChildren()) {
                     placeArray.add(snap.getKey());
                 }
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(ViewChartActivity.this, android.R.layout.simple_dropdown_item_1line, placeArray);
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(ViewChartActivity.this, android.R.layout.simple_dropdown_item_1line, placeArray);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 placeSpinner.setAdapter(adapter);
 
@@ -106,7 +96,7 @@ public class ViewChartActivity extends AppCompatActivity {
 
         IAxisValueFormatter MyXAxisValueFormatter  = new IAxisValueFormatter() {
 
-            String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun",
+            final String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun",
                     "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 
             @Override
@@ -185,21 +175,18 @@ public class ViewChartActivity extends AppCompatActivity {
                             }
                         }
                         if (dataVal.equals("Virus") && !virusEntries.isEmpty()) {
-                            ScatterDataSet dataSet = new ScatterDataSet(virusEntries, "Virus PPM"); // add entries to dataset
+                            ScatterDataSet dataSet = new ScatterDataSet(virusEntries, "Virus PPM"); // add entries to data set
                             ScatterData lineData = new ScatterData(dataSet);
                             dataSet.setColors(ColorTemplate.MATERIAL_COLORS);
                             scatterChart.setData(lineData);
                             scatterChart.invalidate();
                         } else if (dataVal.equals("Contaminant") && !contEntries.isEmpty()){
-                            ScatterDataSet dataSet2 = new ScatterDataSet(contEntries, "Contamination PPM"); // add entries to dataset
+                            ScatterDataSet dataSet2 = new ScatterDataSet(contEntries, "Contamination PPM"); // add entries to data set
                             ScatterData lineData = new ScatterData(dataSet2);
                             dataSet2.setColors(ColorTemplate.MATERIAL_COLORS);
                             scatterChart.setData(lineData);
                             scatterChart.invalidate();
-                        } else {
-
                         }
-
                     }
                     @Override
                     public void onCancelled(DatabaseError databaseError) {

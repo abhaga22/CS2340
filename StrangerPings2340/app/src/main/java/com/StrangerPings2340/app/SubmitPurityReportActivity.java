@@ -29,9 +29,8 @@ public class SubmitPurityReportActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private DatabaseReference dbRef;
     //private EditText location;
-    private Spinner waterCondition, waterType;
-
-    private Button back, submit;
+    @SuppressWarnings("unused")
+    private Spinner waterCondition;
     private WaterPurityReport report;
     private User localUser;
     private LatLng cleanWaterPlace;
@@ -47,10 +46,9 @@ public class SubmitPurityReportActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         dbRef = FirebaseDatabase.getInstance().getReference();
         //location = (EditText) findViewById(R.id.location);
-        submit = (Button) findViewById(R.id.submit);
-        back = (Button) findViewById(R.id.back);
+        Button submit = (Button) findViewById(R.id.submit);
+        Button back = (Button) findViewById(R.id.back);
         localUser = getIntent().getParcelableExtra("LocalUser");
-        waterType = (Spinner) findViewById(R.id.waterType);
         waterCondition = (Spinner) findViewById(R.id.waterCondition);
         virusPPM = (EditText) findViewById(R.id.virusPPM);
         contaminantPPM = (EditText) findViewById(R.id.contaminantPPM);
@@ -58,15 +56,13 @@ public class SubmitPurityReportActivity extends AppCompatActivity {
         String[] waterConditions = {"Safe", "Treatable", "Unsafe"};
 
 
-        ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, waterConditions);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, waterConditions);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         waterCondition.setAdapter(adapter);
 
 
 
-        Log.d("localUser", localUser.toString());
-        //get current user
-        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
 
         authListener = new FirebaseAuth.AuthStateListener() {
             @Override

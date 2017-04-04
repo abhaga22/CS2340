@@ -18,10 +18,11 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/water"
+        android:icon="@mipmap/water"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:fullBackupContent="@xml/backup_descriptor">
         <activity
             android:name=".LoginActivity"
             android:label="@string/app_name">

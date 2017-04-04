@@ -1,16 +1,16 @@
 package com.StrangerPings2340.app;
 
-import com.google.android.gms.location.places.Place;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.firebase.database.ServerValue;
-
-import java.util.Date;
-import java.util.Map;
 
 /**
- * Created by Rishab on 2/24/2017.
+ * @author Rishab
+ * @version 1.0
+ *
+ * Class that represents a Water Source Report submitted by all Users
  */
 
+
+@SuppressWarnings("unused")
 public class WaterSourceReport {
 
     private long timestamp;

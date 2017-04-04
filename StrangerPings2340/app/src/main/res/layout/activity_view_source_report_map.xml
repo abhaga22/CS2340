@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-<fragment xmlns:map="http://schemas.android.com/apk/res-auto"
+<fragment
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/map"
@@ -18,14 +18,12 @@
     />
 
     <Button
-        android:text="Back"
+        android:text="@string/back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/back"
         android:layout_marginTop="10dp"
         android:layout_alignParentBottom="true"
-
-
         />
 
 

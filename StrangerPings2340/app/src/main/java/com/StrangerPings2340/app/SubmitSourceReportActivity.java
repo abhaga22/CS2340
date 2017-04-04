@@ -29,7 +29,6 @@ public class SubmitSourceReportActivity extends AppCompatActivity {
     //private EditText location;
     private Spinner waterCondition, waterType;
 
-    private Button back, submit;
     private WaterSourceReport report;
     private User localUser;
     private LatLng cleanWaterPlace;
@@ -44,8 +43,8 @@ public class SubmitSourceReportActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         dbRef = FirebaseDatabase.getInstance().getReference();
         //location = (EditText) findViewById(R.id.location);
-        submit = (Button) findViewById(R.id.submit);
-        back = (Button) findViewById(R.id.back);
+        Button submit = (Button) findViewById(R.id.submit);
+        Button back = (Button) findViewById(R.id.back);
         localUser = getIntent().getParcelableExtra("LocalUser");
         waterType = (Spinner) findViewById(R.id.waterType);
         waterCondition = (Spinner) findViewById(R.id.waterCondition);
@@ -54,19 +53,17 @@ public class SubmitSourceReportActivity extends AppCompatActivity {
         String[] waterTypes = {"Bottled", "Well", "Stream", "Lake", "Spring", "Other"};
         String[] waterConditions = {"Waste", "Treatable-Clear", "Treatable-Muddy", "Potable"};
 
-        ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, waterTypes);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, waterTypes);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         waterType.setAdapter(adapter);
 
-        ArrayAdapter<String> adapter2 = new ArrayAdapter(this,android.R.layout.simple_spinner_item, waterConditions);
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, waterConditions);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         waterCondition.setAdapter(adapter2);
 
 
 
         Log.d("localUser", localUser.toString());
-        //get current user
-        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         authListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -115,13 +112,6 @@ public class SubmitSourceReportActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //String locationText = location.getText().toString();
 
-
-                /**
-                if (TextUtils.isEmpty(locationText)) {
-                    Toast.makeText(getApplicationContext(), "Enter location!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                **/
 
                 report.setLocation(cleanWaterPlace);
                 report.setName(localUser.getEmail());

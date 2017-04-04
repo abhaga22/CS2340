@@ -1,7 +1,10 @@
 package com.StrangerPings2340.app;
 
 /**
- * Created by Rishab on 2/20/2017.
+ * @author Rishab
+ * @version 1.0
+ *
+ * Class that represents userType of User
  */
 
 public enum UserType {

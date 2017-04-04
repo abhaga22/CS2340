@@ -20,10 +20,9 @@
 
 
         <TextView
-            android:text="Edit Profile"
+            android:text="@string/editProfile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/profile"
             android:textAppearance="@android:style/TextAppearance.Material.Large"
             android:textSize="30sp"
             android:paddingBottom="25dp"
@@ -31,10 +30,9 @@
 
 
         <TextView
-            android:text="Email: "
+            android:text="@string/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/emailLabel"
             android:textAppearance="@android:style/TextAppearance.Material.Medium"
             android:paddingBottom="10dp"
             android:textStyle="normal|bold|italic" />
@@ -44,18 +42,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
+            android:hint="@string/newEmailHint"
             android:id="@+id/email"
             android:textAppearance="@android:style/TextAppearance.Material.Medium"
-            android:layout_gravity="right"
+            android:layout_gravity="end"
             android:paddingBottom="20dp"/>
 
 
 
         <TextView
-            android:text="Address: "
+            android:text="@string/address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/addressLabel"
             android:textAppearance="@android:style/TextAppearance.Material.Medium"
             android:paddingBottom="10dp"
             android:textStyle="normal|bold|italic" />
@@ -64,16 +62,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPostalAddress"
+            android:hint="@string/newAddressHint"
             android:id="@+id/address"
             android:textAppearance="@android:style/TextAppearance.Material.Medium"
             android:paddingBottom="20dp"/>
 
 
         <TextView
-            android:text="User Type: "
+            android:text="@string/userType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/userLabel"
             android:paddingBottom="10dp"
             android:textAppearance="@android:style/TextAppearance.Material.Medium"
             android:textStyle="normal|bold|italic" />
@@ -86,13 +84,13 @@
             android:paddingBottom="20dp"/>
 
         <Button
-            android:text="Save"
+            android:text="@string/save"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/save"
             android:layout_marginTop="10dp" />
         <Button
-            android:text="Back"
+            android:text="@string/back"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/back"
@@ -100,11 +98,6 @@
 
 
             />
-
-
-
-
-
 
     </LinearLayout>
 

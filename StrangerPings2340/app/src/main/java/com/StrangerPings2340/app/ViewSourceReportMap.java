@@ -1,30 +1,20 @@
 package com.StrangerPings2340.app;
 
-import android.*;
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.location.Location;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -41,8 +31,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-
 
 public class ViewSourceReportMap extends FragmentActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
@@ -50,18 +38,16 @@ public class ViewSourceReportMap extends FragmentActivity implements OnMapReadyC
         LocationListener {
 
     private GoogleMap mMap;
-    private Button back;
-    private ArrayList<WaterSourceReport> reports;
     private DatabaseReference dbRef;
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
-    private GoogleApiClient mGoogleApiClient;
-    private Location lastLocation;
 
     class MyInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
 
         private final View myContentsView;
 
+
+        //parent is null as requirement for custom view
         MyInfoWindowAdapter(){
             myContentsView = getLayoutInflater().inflate(R.layout.custom_info_contents, null);
         }
@@ -93,7 +79,7 @@ public class ViewSourceReportMap extends FragmentActivity implements OnMapReadyC
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
 
-        back = (Button) findViewById(R.id.back);
+        Button back = (Button) findViewById(R.id.back);
 
         auth = FirebaseAuth.getInstance();
 
@@ -157,8 +143,6 @@ public class ViewSourceReportMap extends FragmentActivity implements OnMapReadyC
 
         mMap.setInfoWindowAdapter(new MyInfoWindowAdapter());
 
-        reports = new ArrayList<>();
-
         Query waterSources = dbRef.child("waterSourceReports").orderByChild("timestamp");
         waterSources.addValueEventListener(new ValueEventListener() {
             @Override
@@ -177,7 +161,7 @@ public class ViewSourceReportMap extends FragmentActivity implements OnMapReadyC
                     w.setReportNumber(i);
 
                     Log.d("waterSource", w.getLocation().toString());
-                    reports.add(w);
+
 
                     mMap.addMarker(new MarkerOptions().position(w.getLocation()).title(w.toString()));
 

@@ -3,9 +3,14 @@ package com.StrangerPings2340.app;
 import com.google.android.gms.maps.model.LatLng;
 
 /**
- * Created by Rishab on 2/24/2017.
+ * @author Rishab
+ * @version 1.0
+ *
+ * Class that represents a Water Purity Report submitted by Workers>=
  */
 
+
+@SuppressWarnings("unused")
 public class WaterPurityReport {
 
     private long timestamp;
@@ -110,7 +115,7 @@ public class WaterPurityReport {
         this.waterCondition = waterCondition;
     }
     /**
-     * Getter method for Water Comtamination in PPM
+     * Getter method for Water Contamination in PPM
      * @return the type of water contamination in PPM
      */
     public int getContaminantPPM() {

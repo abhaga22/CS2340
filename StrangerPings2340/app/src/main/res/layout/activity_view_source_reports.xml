@@ -29,7 +29,7 @@
             android:layout_above="@+id/back"/>
 
         <Button
-            android:text="Back"
+            android:text="@string/back"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/back"

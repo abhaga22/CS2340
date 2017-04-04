@@ -21,10 +21,9 @@
 
 
         <TextView
-            android:text="Submit A Water Report"
+            android:text="@string/submitSource"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/submitText"
             android:textAppearance="@android:style/TextAppearance.Material.Large"
             android:textSize="30sp"
             android:paddingBottom="25dp"
@@ -32,7 +31,7 @@
 
 
         <TextView
-            android:text="Location : "
+            android:text="@string/location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/locationLabel"
@@ -48,10 +47,9 @@
             tools:layout="@layout/place_autocomplete_fragment" />
 
         <TextView
-            android:text="Water Type"
+            android:text="@string/waterType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/waterTypeLabel"
             android:textAppearance="@android:style/TextAppearance.Material.Medium"
             android:paddingBottom="10dp"
             android:textStyle="normal|bold|italic" />
@@ -63,10 +61,9 @@
             android:paddingTop="10dp" />
 
         <TextView
-            android:text="Water Condition"
+            android:text="@string/waterCondition"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/waterConditionLabel"
             android:textAppearance="@android:style/TextAppearance.Material.Medium"
             android:paddingBottom="10dp"
             android:textStyle="normal|bold|italic" />
@@ -77,13 +74,13 @@
             android:paddingTop="10dp" />
 
         <Button
-            android:text="Submit"
+            android:text="@string/submit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/submit"
             android:layout_marginTop="10dp" />
         <Button
-            android:text="Back"
+            android:text="@string/back"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/back"

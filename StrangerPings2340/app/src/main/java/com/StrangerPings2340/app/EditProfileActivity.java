@@ -16,12 +16,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 public class EditProfileActivity extends AppCompatActivity {
     private static final String TAG = "EditProfileActivity";
@@ -29,9 +25,7 @@ public class EditProfileActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private DatabaseReference dbRef;
     private EditText email, address;
-    private TextView  userType;
 
-    private Button back, save;
     private User localUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,10 +37,10 @@ public class EditProfileActivity extends AppCompatActivity {
 
 
         email = (EditText) findViewById(R.id.email);
-        userType = (TextView) findViewById(R.id.userType);
+        TextView userType = (TextView) findViewById(R.id.userType);
         address = (EditText) findViewById(R.id.address);
-        save = (Button) findViewById(R.id.save);
-        back = (Button) findViewById(R.id.back);
+        Button save = (Button) findViewById(R.id.save);
+        Button back = (Button) findViewById(R.id.back);
         localUser = getIntent().getParcelableExtra("LocalUser");
         Log.d("localUser", localUser.toString());
         //get current user
@@ -95,6 +89,7 @@ public class EditProfileActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Enter address!", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                //noinspection ConstantConditions
                 user.updateEmail(emailText)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override

@@ -4,7 +4,10 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * Created by Rishab on 2/24/2017.
+ * @author Rishab
+ * @version 1.0
+ *
+ * Class that represents user
  */
 
 public class User implements Parcelable {
@@ -37,6 +40,7 @@ public class User implements Parcelable {
      * Setter method for User type
      * @param userType an object of UserType to set the User type
      */
+    @SuppressWarnings("unused")
     public void setUserType(UserType userType) {
         this.userType = userType;
     }
@@ -77,7 +81,7 @@ public class User implements Parcelable {
      *           as inputs from the user
      */
 
-    protected User(Parcel in) {
+    User(Parcel in) {
         userType = (UserType) in.readValue(UserType.class.getClassLoader());
         email = in.readString();
         address = in.readString();

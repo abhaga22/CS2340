@@ -1,13 +1,9 @@
 package com.StrangerPings2340.app;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -23,7 +19,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText inputEmail, inputPassword;
     private FirebaseAuth auth;
-    private Button btnSignup, btnLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +38,8 @@ public class LoginActivity extends AppCompatActivity {
 
         inputEmail = (EditText) findViewById(R.id.email);
         inputPassword = (EditText) findViewById(R.id.password);
-        btnSignup = (Button) findViewById(R.id.btn_signup);
-        btnLogin = (Button) findViewById(R.id.btn_login);
+        Button btnSignup = (Button) findViewById(R.id.btn_signup);
+        Button btnLogin = (Button) findViewById(R.id.btn_login);
 
 
         //Get Firebase auth instance

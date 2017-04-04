@@ -23,14 +23,14 @@
 
 
         <Button
-            android:text="Submit Water Source Report"
+            android:text="@string/submitSource"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/submitSourceReport"
             android:layout_marginTop="10dp" />
 
         <Button
-            android:text="Submit Water Purity Report"
+            android:text="@string/submitPurity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/submitPurityReport"
@@ -38,21 +38,21 @@
             android:visibility="gone" />
 
         <Button
-            android:text="View Source Map"
+            android:text="@string/viewSourceMap"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/viewMap"
             android:layout_marginTop="10dp" />
 
         <Button
-            android:text="View Water Source Reports"
+            android:text="@string/viewSource"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/viewSourceReports"
             android:layout_marginTop="10dp" />
 
         <Button
-            android:text="View Water Purity Reports"
+            android:text="@string/viewPurity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/viewPurityReports"
@@ -60,7 +60,7 @@
             android:visibility="gone"/>
 
         <Button
-            android:text="View History Graph"
+            android:text="@string/viewHistory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/viewChart"
@@ -68,7 +68,7 @@
             android:visibility="gone"/>
 
         <Button
-            android:text="Edit Profile"
+            android:text="@string/editProfile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/editProfile"

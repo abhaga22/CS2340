@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -17,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="10dp"
-            android:text="Locations"
+            android:text="@string/location"
             android:textAppearance="@android:style/TextAppearance.Material.Medium"
             android:textStyle="normal|bold|italic" />
 
@@ -35,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/locSpinner"
-            android:text="Year"
+            android:text="@string/year"
             android:textAppearance="@android:style/TextAppearance.Material.Medium"
             android:textStyle="normal|bold|italic" />
 
@@ -53,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/yearSpinner"
-            android:text="Data"
+            android:text="@string/data"
             android:textAppearance="@android:style/TextAppearance.Material.Medium"
             android:textStyle="normal|bold|italic" />
 
@@ -76,12 +75,11 @@
 
 
         <Button
-            android:text="Back"
+            android:text="@string/back"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/back"
-            android:layout_alignParentBottom="true"
-            ></Button>
+            android:layout_alignParentBottom="true" />
 
     </RelativeLayout>
 
