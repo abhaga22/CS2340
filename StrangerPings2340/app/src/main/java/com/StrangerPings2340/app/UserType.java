@@ -23,12 +23,12 @@ public enum UserType {
     }
 
     /**
-     * Changes inputted string to a userlevel enum
+     * Changes inputted string to a userType enum
      * @param level the string level passed in
      * @return UserLevel the user level created
      */
     @SuppressWarnings("unused")
-    public static UserType stringToUserLevel(String level) {
+    public static UserType stringToUserType(String level) {
         if ((level != null)) {
             switch (level) {
                 case "USER":
@@ -39,6 +39,8 @@ public enum UserType {
                     return UserType.MANAGER;
                 case "ADMIN":
                     return UserType.ADMIN;
+                default:
+                    return null;
             }
         }
         return null;
@@ -60,9 +62,9 @@ public enum UserType {
                 return "MANAGER";
             case ADMIN:
                 return "ADMIN";
+            default:
+                return null;
         }
-
-        return null;
     }
 
 

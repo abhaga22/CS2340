@@ -7,7 +7,7 @@ package com.StrangerPings2340.app;
  * Class that represents waterType
  */
 
-public enum WaterTypes {
+public enum WaterType {
 
     BOTTLED ("BOTTLED"),
     WELL ("WELL"),
@@ -21,7 +21,7 @@ public enum WaterTypes {
      * Creates a user Constructor
      * @param waterType  to store user type
      */
-    WaterTypes(String waterType) {
+    WaterType(String waterType) {
         this.waterType = waterType;
     }
 
@@ -30,21 +30,23 @@ public enum WaterTypes {
      * @param level the string level passed in
      * @return WaterType the user level created
      */
-    public static WaterTypes stringToWaterType(String level) {
+    public static WaterType stringToWaterType(String level) {
         if ((level != null)) {
             switch (level) {
                 case "BOTTLED":
-                    return WaterTypes.BOTTLED;
+                    return WaterType.BOTTLED;
                 case "WELL":
-                    return WaterTypes.WELL;
+                    return WaterType.WELL;
                 case "STREAM":
-                    return WaterTypes.STREAM;
+                    return WaterType.STREAM;
                 case "LAKE":
-                    return WaterTypes.LAKE;
+                    return WaterType.LAKE;
                 case "SPRING":
-                    return WaterTypes.SPRING;
+                    return WaterType.SPRING;
                 case "OTHER":
-                    return WaterTypes.OTHER;
+                    return WaterType.OTHER;
+                default:
+                    return null;
             }
         }
         return null;
@@ -56,7 +58,7 @@ public enum WaterTypes {
      * @return String the user level string
      */
     @SuppressWarnings("unused")
-    public static String waterTypeToString(WaterTypes level) {
+    public static String waterTypeToString(WaterType level) {
         if ((level != null)) {
             switch (level) {
                 case BOTTLED:
@@ -71,6 +73,8 @@ public enum WaterTypes {
                     return "SPRING";
                 case OTHER:
                     return "OTHER";
+                default:
+                    return null;
             }
         }
         return null;

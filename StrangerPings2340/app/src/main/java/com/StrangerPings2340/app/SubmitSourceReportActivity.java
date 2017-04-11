@@ -53,7 +53,7 @@ public class SubmitSourceReportActivity extends AppCompatActivity {
 
         String[] waterConditions = {"WASTE", "TREATABLE-CLEAR", "TREATABLE-MUDDY", "POTABLE"};
 
-        ArrayAdapter<WaterTypes> adapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, WaterTypes.values());
+        ArrayAdapter<WaterType> adapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, WaterType.values());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         waterType.setAdapter(adapter);
 
@@ -116,7 +116,7 @@ public class SubmitSourceReportActivity extends AppCompatActivity {
                 report.setLocation(cleanWaterPlace);
                 report.setName(localUser.getEmail());
                 report.setTimestamp(System.currentTimeMillis());
-                report.setWaterType( (WaterTypes) waterType.getSelectedItem());
+                report.setWaterType( (WaterType) waterType.getSelectedItem());
                 report.setWaterCondition((String) waterCondition.getSelectedItem());
                 report.setAddressString(cleanWaterAddress);
 

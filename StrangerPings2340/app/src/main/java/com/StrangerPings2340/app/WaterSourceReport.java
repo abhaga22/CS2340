@@ -16,7 +16,7 @@ public class WaterSourceReport {
     private long timestamp;
     private String name;
     private LatLng location;
-    private WaterTypes waterType;
+    private WaterType waterType;
     private String waterCondition;
     private int reportNumber;
 
@@ -104,14 +104,14 @@ public class WaterSourceReport {
      * Getter method for Water Type
      * @return the type of water source
      */
-    public WaterTypes getWaterType() {
+    public WaterType getWaterType() {
         return waterType;
     }
     /**
      * Setter method for water type
      * @param waterType a string containing the new water type to be set
      */
-    public void setWaterType(WaterTypes waterType) {
+    public void setWaterType(WaterType waterType) {
         this.waterType = waterType;
     }
     /**

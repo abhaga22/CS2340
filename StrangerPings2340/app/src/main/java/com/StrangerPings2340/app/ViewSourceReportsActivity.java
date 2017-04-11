@@ -49,7 +49,7 @@ public class ViewSourceReportsActivity extends AppCompatActivity {
                     WaterSourceReport w = new WaterSourceReport();
                     w.setReportNumber(i);
                     w.setWaterCondition((String) snapshot.child("waterCondition").getValue());
-                    w.setWaterType(WaterTypes.stringToWaterType(
+                    w.setWaterType(WaterType.stringToWaterType(
                                     (String) snapshot.child("waterType").getValue()));
                     w.setLocation(new LatLng( (double) snapshot.child("location").child(
                             "latitude").getValue(), (double) snapshot.child("location").child(
