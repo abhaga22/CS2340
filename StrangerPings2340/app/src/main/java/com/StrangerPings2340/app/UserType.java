@@ -53,18 +53,19 @@ public enum UserType {
      */
     @SuppressWarnings("unused")
     public static String userTypeToString(UserType level) {
-        switch (level) {
-            case USER:
-                return "USER";
-            case WORKER:
-                return "WORKER";
-            case MANAGER:
-                return "MANAGER";
-            case ADMIN:
-                return "ADMIN";
-            default:
-                return null;
+        if (level != null) {
+            switch (level) {
+                case USER:
+                    return "USER";
+                case WORKER:
+                    return "WORKER";
+                case MANAGER:
+                    return "MANAGER";
+                case ADMIN:
+                    return "ADMIN";
+            }
         }
+        return null;
     }
 
 

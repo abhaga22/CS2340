@@ -14,7 +14,28 @@ import static org.junit.Assert.*;
  */
 public class RishabKaupJUnitTests {
     @Test
-    public void addition_isCorrect() throws Exception {
-        assertEquals(4, 2 + 2);
+    public void testUserTypeToString() throws Exception {
+        UserType testUserType = UserType.USER;
+        String expectedString = "USER";
+        assertEquals("Testing USER",expectedString, UserType.userTypeToString(testUserType));
+
+        testUserType = UserType.WORKER;
+        expectedString = "WORKER";
+
+        assertEquals("Testing WORKER",expectedString, UserType.userTypeToString(testUserType));
+
+        testUserType = UserType.MANAGER;
+        expectedString = "MANAGER";
+
+        assertEquals("Testing MANAGER",expectedString, UserType.userTypeToString(testUserType));
+
+        testUserType = UserType.ADMIN;
+        expectedString = "ADMIN";
+
+        assertEquals("Testing ADMIN",expectedString, UserType.userTypeToString(testUserType));
+
+        testUserType = null;
+
+        assertNull("Testing null", UserType.userTypeToString(testUserType));
     }
 }
