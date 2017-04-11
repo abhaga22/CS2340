@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
  * @author Rishab Kaup
  * @version 1.0
  *
- * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
+ *
  */
 public class RishabKaupJUnitTests {
     @Test
