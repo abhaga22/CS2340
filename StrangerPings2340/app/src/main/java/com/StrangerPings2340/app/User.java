@@ -14,9 +14,11 @@ public class User implements Parcelable {
     private UserType userType;
     private String email;
     private String address;
+
     /**
      * Creates a user Constructor
      */
+
     public User() {}
     /**
      * Creates a user Constructor

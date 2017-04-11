@@ -53,7 +53,7 @@ public class SubmitPurityReportActivity extends AppCompatActivity {
         virusPPM = (EditText) findViewById(R.id.virusPPM);
         contaminantPPM = (EditText) findViewById(R.id.contaminantPPM);
 
-        String[] waterConditions = {"Safe", "Treatable", "Unsafe"};
+        String[] waterConditions = {"SAFE", "TREATABLE", "UNSAFE"};
 
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item, waterConditions);
