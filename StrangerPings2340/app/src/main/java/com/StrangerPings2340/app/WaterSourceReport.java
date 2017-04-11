@@ -129,18 +129,16 @@ public class WaterSourceReport {
         this.waterCondition = waterCondition;
     }
 
+
+    /**
+     * Copies a report
+     * @param reportToCopy report copied in
+     * @return whether it is successful or not
+     */
     public boolean reportCopyOver(WaterSourceReport reportToCopy){
         if(reportToCopy == null){
             return false;
-        } /*else {
-            for( int i = -100; i < 0; i++){
-                if(reportToCopy.getReportNumber() == i){
-                    return false;
-                }       // trying to see if reportnumber is negative between 1 and 100
-            }
-        }
-        if(reportToCopy != null && )*/
-        else{
+        } else {
             this.timestamp = reportToCopy.getTimestamp();
             this.name = reportToCopy.getName();
             this.location = reportToCopy.getLocation();
