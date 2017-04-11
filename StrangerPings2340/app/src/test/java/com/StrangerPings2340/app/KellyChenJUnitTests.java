@@ -19,24 +19,24 @@ public class KellyChenJUnitTests {
         String expectedString = "BOTTLED";
         assertEquals("Testing BOTTLED",expectedString, WaterType.waterTypeToString(testWaterType));
 
-        WaterType testWaterType = WaterType.WELL;
-        String expectedString = "WELL";
+        testWaterType = WaterType.WELL;
+        expectedString = "WELL";
         assertEquals("Testing WELL",expectedString, WaterType.waterTypeToString(testWaterType));
 
-        WaterType testWaterType = WaterType.STREAM;
-        String expectedString = "STREAM";
+        testWaterType = WaterType.STREAM;
+        expectedString = "STREAM";
         assertEquals("Testing STREAM",expectedString, WaterType.waterTypeToString(testWaterType));
 
-        WaterType testWaterType = WaterType.LAKE;
-        String expectedString = "LAKE";
+        testWaterType = WaterType.LAKE;
+        expectedString = "LAKE";
         assertEquals("Testing LAKE",expectedString, WaterType.waterTypeToString(testWaterType));
 
-        WaterType testWaterType = WaterType.SPRING;
-        String expectedString = "SPRING";
+        testWaterType = WaterType.SPRING;
+        expectedString = "SPRING";
         assertEquals("Testing SPRING",expectedString, WaterType.waterTypeToString(testWaterType));
 
-        WaterType testWaterType = WaterType.OTHER;
-        String expectedString = "OTHER";
+        testWaterType = WaterType.OTHER;
+        expectedString = "OTHER";
         assertEquals("Testing OTHER",expectedString, WaterType.waterTypeToString(testWaterType));
 
         testWaterType = null;
