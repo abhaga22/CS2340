@@ -18,7 +18,7 @@ public enum WaterType {
 
     private final String waterType;
     /**
-     * Creates a user Constructor
+     * Creates a water Constructor
      * @param waterType  to store user type
      */
     WaterType(String waterType) {
