@@ -129,6 +129,30 @@ public class WaterSourceReport {
         this.waterCondition = waterCondition;
     }
 
+    public boolean reportCopyOver(WaterSourceReport reportToCopy){
+        if(reportToCopy == null){
+            return false;
+        } /*else {
+            for( int i = -100; i < 0; i++){
+                if(reportToCopy.getReportNumber() == i){
+                    return false;
+                }       // trying to see if reportnumber is negative between 1 and 100
+            }
+        }
+        if(reportToCopy != null && )*/
+        else{
+            this.timestamp = reportToCopy.getTimestamp();
+            this.name = reportToCopy.getName();
+            this.location = reportToCopy.getLocation();
+            this.waterType = reportToCopy.getWaterType();
+            this.waterCondition = reportToCopy.getWaterCondition();
+            this.reportNumber = reportToCopy.getReportNumber();
+            this.addressString = reportToCopy.getAddressString();
+            return true;
+        }
+
+    }
+
 
     public String toString() {
         return "Report " + Integer.toString(reportNumber) +
