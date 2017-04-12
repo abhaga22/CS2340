@@ -13,7 +13,7 @@ import static junit.framework.Assert.assertEquals;
  *
  */
 
-public class AbhinavJUnitTests {
+public class JongbeomJUnitTests{
     @Test
     public void testReportCopyOver() {
         WaterPurityReport purityReport1 = null;
