@@ -1,6 +1,8 @@
 package com.StrangerPings2340.app;
 
 
+import com.google.android.gms.maps.model.LatLng;
+
 import org.junit.Test;
 
 import static junit.framework.Assert.assertEquals;
@@ -24,7 +26,7 @@ public class JongbeomJUnitTests {
         purityReport1.setReportNumber(1);
         purityReport1.setTimestamp(100000);
         purityReport1.setName("Water_Purity_Report_Test");
-        purityReport1.setLocation(10.50,10.50);
+        purityReport1.setLocation(new LatLng(10.5, 10.5));
         purityReport1.setWaterCondition("Potable");
         purityReport1.setContaminantPPM(100);
         purityReport1.setVirusPPM(10);
