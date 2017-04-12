@@ -15,7 +15,7 @@ import static junit.framework.Assert.assertEquals;
 
 public class JongbeomJUnitTests{
     @Test
-    public void testReportCopyOver() {
+    public void testReportToString() {
         WaterPurityReport purityReport1 = null;
         WaterPurityReport purityReport2 = new WaterPurityReport();
         assertFalse("Fails when report to be copied is null",purityReport2.reportCopyOver(report1));
