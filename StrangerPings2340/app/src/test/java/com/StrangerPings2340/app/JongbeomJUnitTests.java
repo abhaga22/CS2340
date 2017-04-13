@@ -1,11 +1,11 @@
 package com.StrangerPings2340.app;
 
 
-import com.google.android.gms.maps.model.LatLng;
-
 import org.junit.Test;
 
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertTrue;
 
 /**
  * JUnitTests created for M10 by Jongbeom
@@ -26,7 +26,6 @@ public class JongbeomJUnitTests {
         purityReport1.setReportNumber(1);
         purityReport1.setTimestamp(100000);
         purityReport1.setName("Water_Purity_Report_Test");
-        purityReport1.setLocation(new LatLng(10.5, 10.5));
         purityReport1.setWaterCondition("Potable");
         purityReport1.setContaminantPPM(100);
         purityReport1.setVirusPPM(10);
@@ -38,6 +37,5 @@ public class JongbeomJUnitTests {
         assertEquals("Report cannot copy water condition correctly", purityReport2.getWaterCondition(),purityReport1.getWaterCondition());
         assertEquals("Report cannot copy water virus PPM correctly", purityReport2.getVirusPPM(),purityReport1.getVirusPPM());
         assertEquals("Report cannot copy water contamination PPM correctly", purityReport2.getContaminantPPM(),purityReport1.getContaminantPPM());
-        assertEquals("Report cannot copy location correctly", purityReport2.getLocation(),purityReport1.getLocation());
     }
 }
