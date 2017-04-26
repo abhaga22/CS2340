@@ -87,6 +87,7 @@ public class ViewPurityReportsActivity extends AppCompatActivity {
                     // user auth state is changed - user is null
                     // launch login activity
                     startActivity(new Intent(ViewPurityReportsActivity.this, LoginActivity.class));
+                    overridePendingTransition(R.anim.activity_back_in, R.anim.activity_back_out);
                     finish();
                 }
             }
@@ -97,6 +98,7 @@ public class ViewPurityReportsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(ViewPurityReportsActivity.this, MainActivity.class));
+                overridePendingTransition(R.anim.activity_back_in, R.anim.activity_back_out);
                 finish();
             }
         });

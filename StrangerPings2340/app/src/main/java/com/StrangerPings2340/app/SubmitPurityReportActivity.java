@@ -102,6 +102,7 @@ public class SubmitPurityReportActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "Changes not saved!", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(SubmitPurityReportActivity.this, MainActivity.class));
+                overridePendingTransition(R.anim.activity_back_in, R.anim.activity_back_out);
                 finish();
             }
         });
@@ -124,6 +125,16 @@ public class SubmitPurityReportActivity extends AppCompatActivity {
                     return;
                 }
 
+                if (cleanWaterPlace == null) {
+                    Toast.makeText(getApplicationContext(), "Enter an Address!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (cleanWaterAddress == null) {
+                    Toast.makeText(getApplicationContext(), "Enter an Address!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
 
                 report.setLocation(cleanWaterPlace);
                 report.setName(localUser.getEmail());
@@ -139,6 +150,7 @@ public class SubmitPurityReportActivity extends AppCompatActivity {
 
                 Toast.makeText(getApplicationContext(), "Report submitted!", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(SubmitPurityReportActivity.this, MainActivity.class));
+                overridePendingTransition(R.anim.activity_back_in, R.anim.activity_back_out);
                 finish();
             }
         });

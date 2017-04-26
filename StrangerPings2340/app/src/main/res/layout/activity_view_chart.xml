@@ -64,14 +64,15 @@
 
         </Spinner>
 
-        <com.github.mikephil.charting.charts.ScatterChart
-            android:id="@+id/scatterChart"
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/barChart"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/dataSpinner"
             android:layout_above="@id/back">
 
-        </com.github.mikephil.charting.charts.ScatterChart>
+        </com.github.mikephil.charting.charts.BarChart>
+
 
 
         <Button

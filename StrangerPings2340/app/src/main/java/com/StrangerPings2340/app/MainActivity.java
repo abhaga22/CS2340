@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
                     // user auth state is changed - user is null
                     // launch login activity
                     startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                    overridePendingTransition(R.anim.activity_back_in, R.anim.activity_back_out);
                     finish();
                 }
             }
@@ -94,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
                 startActivity(new Intent(MainActivity.this, EditProfileActivity.class).putExtra(
                         "LocalUser", localUser));
+                overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
 
                 finish();
             }
@@ -104,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 startActivity(new Intent(MainActivity.this, ViewSourceReportsActivity.class));
-
+                overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
                 finish();
             }
         });
@@ -114,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 startActivity(new Intent(MainActivity.this, ViewPurityReportsActivity.class));
-
+                overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
                 finish();
             }
         });
@@ -124,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 startActivity(new Intent(MainActivity.this, ViewSourceReportMap.class));
+                overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
 
                 finish();
             }
@@ -137,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
 
                 startActivity(new Intent(MainActivity.this, SubmitSourceReportActivity.class).putExtra(
                         "LocalUser", localUser));
+                overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
 
                 finish();
             }
@@ -148,6 +152,7 @@ public class MainActivity extends AppCompatActivity {
 
                 startActivity(new Intent(MainActivity.this, SubmitPurityReportActivity.class).putExtra(
                         "LocalUser", localUser));
+                overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
 
                 finish();
             }
@@ -158,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 startActivity(new Intent(MainActivity.this, ViewChartActivity.class));
+                overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
 
                 finish();
             }

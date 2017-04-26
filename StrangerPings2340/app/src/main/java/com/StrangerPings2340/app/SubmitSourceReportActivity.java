@@ -73,6 +73,7 @@ public class SubmitSourceReportActivity extends AppCompatActivity {
                     // user auth state is changed - user is null
                     // launch login activity
                     startActivity(new Intent(SubmitSourceReportActivity.this, LoginActivity.class));
+                    overridePendingTransition(R.anim.activity_back_in, R.anim.activity_back_out);
                     finish();
                 }
             }
@@ -103,6 +104,7 @@ public class SubmitSourceReportActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "Changes not saved!", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(SubmitSourceReportActivity.this, MainActivity.class));
+                overridePendingTransition(R.anim.activity_back_in, R.anim.activity_back_out);
                 finish();
             }
         });
@@ -112,6 +114,15 @@ public class SubmitSourceReportActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //String locationText = location.getText().toString();
 
+                if (cleanWaterPlace == null) {
+                    Toast.makeText(getApplicationContext(), "Enter a Location!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (cleanWaterAddress == null) {
+                    Toast.makeText(getApplicationContext(), "Enter a Location!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 report.setLocation(cleanWaterPlace);
                 report.setName(localUser.getEmail());
@@ -125,6 +136,7 @@ public class SubmitSourceReportActivity extends AppCompatActivity {
 
                 Toast.makeText(getApplicationContext(), "Report submitted!", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(SubmitSourceReportActivity.this, MainActivity.class));
+                overridePendingTransition(R.anim.activity_back_in, R.anim.activity_back_out);
                 finish();
             }
         });

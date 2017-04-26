@@ -70,6 +70,7 @@ public class EditProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "Changes not saved!", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(EditProfileActivity.this, MainActivity.class));
+                overridePendingTransition(R.anim.activity_back_in, R.anim.activity_back_out);
                 finish();
             }
         });
@@ -106,6 +107,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
                 Toast.makeText(getApplicationContext(), "Changes saved!", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(EditProfileActivity.this, MainActivity.class));
+                overridePendingTransition(R.anim.activity_back_in, R.anim.activity_back_out);
                 finish();
             }
         });

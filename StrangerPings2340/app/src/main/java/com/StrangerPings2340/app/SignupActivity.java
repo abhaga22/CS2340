@@ -52,6 +52,8 @@ public class SignupActivity extends AppCompatActivity {
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startActivity(new Intent(SignupActivity.this, LoginActivity.class));
+                overridePendingTransition(R.anim.activity_back_in, R.anim.activity_back_out);
                 finish();
             }
         });
@@ -105,6 +107,7 @@ public class SignupActivity extends AppCompatActivity {
 
                                     Intent i = new Intent(SignupActivity.this, MainActivity.class);
                                     startActivity(i);
+                                    overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
                                     finish();
                                 }
                             }

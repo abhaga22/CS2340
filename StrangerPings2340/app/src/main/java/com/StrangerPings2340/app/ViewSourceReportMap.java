@@ -1,9 +1,18 @@
 package com.StrangerPings2340.app;
 
+import android.*;
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
+import android.location.LocationManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,9 +24,12 @@ import android.widget.TextView;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -31,6 +43,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.List;
+
 
 public class ViewSourceReportMap extends FragmentActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
@@ -41,7 +55,8 @@ public class ViewSourceReportMap extends FragmentActivity implements OnMapReadyC
     private DatabaseReference dbRef;
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
-
+    private static final int REQUEST_LOCATION = 0;
+    private View mLayout;
     class MyInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
 
         private final View myContentsView;
@@ -85,10 +100,13 @@ public class ViewSourceReportMap extends FragmentActivity implements OnMapReadyC
 
         dbRef = FirebaseDatabase.getInstance().getReference();
 
+
+
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(ViewSourceReportMap.this, MainActivity.class));
+                overridePendingTransition(R.anim.activity_back_in, R.anim.activity_back_out);
                 finish();
             }
         });
@@ -101,6 +119,7 @@ public class ViewSourceReportMap extends FragmentActivity implements OnMapReadyC
                     // user auth state is changed - user is null
                     // launch login activity
                     startActivity(new Intent(ViewSourceReportMap.this, LoginActivity.class));
+                    overridePendingTransition(R.anim.activity_back_in, R.anim.activity_back_out);
                     finish();
                 }
             }
@@ -143,6 +162,23 @@ public class ViewSourceReportMap extends FragmentActivity implements OnMapReadyC
 
         mMap.setInfoWindowAdapter(new MyInfoWindowAdapter());
 
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            // location permission has not been granted.
+
+            requestLocationPermission();
+
+        }
+        mMap.setMyLocationEnabled(true);
+
+
+        LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+        Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+        LatLng loc = new LatLng (location.getLatitude(), location.getLongitude());
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(loc, 5.0f));
+
+
         Query waterSources = dbRef.child("waterSourceReports").orderByChild("timestamp");
         waterSources.addValueEventListener(new ValueEventListener() {
             @Override
@@ -181,6 +217,7 @@ public class ViewSourceReportMap extends FragmentActivity implements OnMapReadyC
 
     }
 
+
     @Override
     public void onConnected(@Nullable Bundle bundle) {
     }
@@ -198,5 +235,35 @@ public class ViewSourceReportMap extends FragmentActivity implements OnMapReadyC
     @Override
     public void onLocationChanged(Location location) {
 
+    }
+
+    private void requestLocationPermission() {
+        Log.i("LOCATION", "LOCATION permission has NOT been granted. Requesting permission.");
+
+        // BEGIN_INCLUDE(camera_permission_request)
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                android.Manifest.permission.ACCESS_COARSE_LOCATION)) {
+            // Provide an additional rationale to the user if the permission was not granted
+            // and the user would benefit from additional context for the use of the permission.
+            // For example if the user has previously denied the permission.
+
+            Snackbar.make(mLayout, "This is to show locations around you",
+                    Snackbar.LENGTH_INDEFINITE)
+                    .setAction("OK", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            ActivityCompat.requestPermissions(ViewSourceReportMap.this,
+                                    new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
+                                    REQUEST_LOCATION);
+                        }
+                    })
+                    .show();
+        } else {
+
+            // Camera permission has not been granted yet. Request it directly.
+            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_COARSE_LOCATION},
+                    REQUEST_LOCATION);
+        }
+        // END_INCLUDE(camera_permission_request)
     }
 }

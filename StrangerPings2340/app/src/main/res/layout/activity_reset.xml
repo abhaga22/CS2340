@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.StrangerPings2340.app.ResetActivity">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:background="@color/backgroundRegistration"
+        android:padding="@dimen/activity_horizontal_margin">
+
+
+        <ImageView
+            android:layout_width="@dimen/logo_w_h"
+            android:layout_height="@dimen/logo_w_h"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="30dp"
+            android:src="@drawable/water"
+            android:contentDescription="@string/app_name"/>
+
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_email"
+            android:inputType="textEmailAddress"
+            android:maxLines="1" />
+
+
+        <Button
+            android:id="@+id/reset_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Send Reset Email" />
+
+        <Button
+            android:text="@string/back"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/back"
+            android:layout_marginTop="10dp" />
+
+    </LinearLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>

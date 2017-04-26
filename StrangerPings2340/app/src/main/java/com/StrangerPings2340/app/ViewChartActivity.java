@@ -10,11 +10,16 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
+import com.github.mikephil.charting.animation.Easing;
+import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.ScatterChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.ScatterData;
 import com.github.mikephil.charting.data.ScatterDataSet;
@@ -34,7 +39,7 @@ import java.util.Calendar;
 
 public class ViewChartActivity extends AppCompatActivity {
 
-    private ScatterChart scatterChart;
+    private BarChart barChart;
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
     private DatabaseReference dbRef;
@@ -92,7 +97,7 @@ public class ViewChartActivity extends AppCompatActivity {
             }
         });
 
-        scatterChart = (ScatterChart) findViewById(R.id.scatterChart);
+        barChart = (BarChart) findViewById(R.id.barChart);
 
         IAxisValueFormatter MyXAxisValueFormatter  = new IAxisValueFormatter() {
 
@@ -105,26 +110,28 @@ public class ViewChartActivity extends AppCompatActivity {
             }
         };
 
-        XAxis xAxis = scatterChart.getXAxis();
-        YAxis leftAxis = scatterChart.getAxisLeft();
-        YAxis rightAxis = scatterChart.getAxisRight();
-        leftAxis.setAxisMinimum(0);
-        rightAxis.setAxisMinimum(0);
-        xAxis.setValueFormatter(MyXAxisValueFormatter);
-        xAxis.setAxisMaximum(11);
-        xAxis.setAxisMinimum(0);
-        xAxis.setGranularityEnabled(true);
-        xAxis.setGranularity(1f);
         Description none = new Description();
         none.setText("");
-        scatterChart.setDescription(none);
+
+        XAxis xAxis2 = barChart.getXAxis();
+        YAxis leftAxis2 = barChart.getAxisLeft();
+        YAxis rightAxis2 = barChart.getAxisRight();
+        leftAxis2.setAxisMinimum(0);
+        rightAxis2.setAxisMinimum(0);
+        xAxis2.setValueFormatter(MyXAxisValueFormatter);
+        xAxis2.setAxisMaximum(11);
+        xAxis2.setAxisMinimum(0);
+        xAxis2.setGranularityEnabled(true);
+        xAxis2.setGranularity(1f);
+        barChart.setDescription(none);
 
 
         AdapterView.OnItemSelectedListener select = new AdapterView.OnItemSelectedListener() {
         @Override
             public void onItemSelected(final AdapterView<?> parent, View view, int position, long id) {
 
-                scatterChart.clear();
+
+                barChart.clear();
 
                 Query reports = dbRef.child("waterPurityReports").orderByChild("timestamp");
                 reports.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -135,8 +142,8 @@ public class ViewChartActivity extends AppCompatActivity {
                         String locVal = placeSpinner.getSelectedItem().toString();
                         String dataVal = dataSpinner.getSelectedItem().toString();
 
-                        ArrayList<Entry> virusEntries = new ArrayList<>();
-                        ArrayList<Entry> contEntries = new ArrayList<>();
+                        ArrayList<BarEntry> virusEntries = new ArrayList<>();
+                        ArrayList<BarEntry> contEntries = new ArrayList<>();
 
                         Calendar start = Calendar.getInstance();
                         start.set(yearVal, 0, 1, 0, 0, 0);
@@ -170,22 +177,26 @@ public class ViewChartActivity extends AppCompatActivity {
                             if (reportsPerMonth[i] != 0) {
                                 double avgVirus = (monthsVirus[i] * 1.0)/reportsPerMonth[i];
                                 double avgCont = (monthsContaminant[i] * 1.0)/reportsPerMonth[i];
-                                virusEntries.add(new Entry(i, (float) avgVirus));
-                                contEntries.add(new Entry(i, (float) avgCont));
+                                virusEntries.add(new BarEntry(i, (float) avgVirus));
+                                contEntries.add(new BarEntry(i, (float) avgCont));
                             }
                         }
                         if (dataVal.equals("Virus") && !virusEntries.isEmpty()) {
-                            ScatterDataSet dataSet = new ScatterDataSet(virusEntries, "Virus PPM"); // add entries to data set
-                            ScatterData lineData = new ScatterData(dataSet);
-                            dataSet.setColors(ColorTemplate.MATERIAL_COLORS);
-                            scatterChart.setData(lineData);
-                            scatterChart.invalidate();
+
+                            BarDataSet barSet = new BarDataSet(virusEntries, "Virus PPM");
+                            BarData barData = new BarData(barSet);
+                            barSet.setColor(ColorTemplate.rgb("71ACD6"));
+                            barChart.setData(barData);
+                            barChart.animateY(2000);
+
                         } else if (dataVal.equals("Contaminant") && !contEntries.isEmpty()){
-                            ScatterDataSet dataSet2 = new ScatterDataSet(contEntries, "Contamination PPM"); // add entries to data set
-                            ScatterData lineData = new ScatterData(dataSet2);
-                            dataSet2.setColors(ColorTemplate.MATERIAL_COLORS);
-                            scatterChart.setData(lineData);
-                            scatterChart.invalidate();
+
+                            BarDataSet barSet = new BarDataSet(contEntries, "Contaminant PPM");
+                            BarData barData = new BarData(barSet);
+                            barSet.setColor(ColorTemplate.rgb("71ACD6"));
+                            barChart.setData(barData);
+                            barChart.animateY(2000);
+
                         }
                     }
                     @Override
@@ -215,6 +226,7 @@ public class ViewChartActivity extends AppCompatActivity {
                     // user auth state is changed - user is null
                     // launch login activity
                     startActivity(new Intent(ViewChartActivity.this, LoginActivity.class));
+                    overridePendingTransition(R.anim.activity_back_in, R.anim.activity_back_out);
                     finish();
                 }
             }
@@ -224,6 +236,7 @@ public class ViewChartActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(ViewChartActivity.this, MainActivity.class));
+                overridePendingTransition(R.anim.activity_back_in, R.anim.activity_back_out);
                 finish();
             }
         });

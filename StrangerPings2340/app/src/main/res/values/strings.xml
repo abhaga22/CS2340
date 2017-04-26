@@ -22,12 +22,12 @@
     <string name="save">Save</string>
     <string name="back">Back</string>
 
-    <string name = "submitSource">Submit Water Source Report</string>
-    <string name = "submitPurity">Submit Water Purity Report</string>
-    <string name = "viewSourceMap">View Source Map</string>
-    <string name = "viewSource">View Water Source Reports</string>
-    <string name = "viewPurity">View Water Purity Reports</string>
-    <string name = "viewHistory">View History Graph</string>
+    <string name="submitSource">Submit Water Source Report</string>
+    <string name="submitPurity">Submit Water Purity Report</string>
+    <string name="viewSourceMap">View Source Map</string>
+    <string name="viewSource">View Water Source Reports</string>
+    <string name="viewPurity">View Water Purity Reports</string>
+    <string name="viewHistory">View History Graph</string>
 
     <string name="location">Location</string>
     <string name="waterCondition">Water Condition :</string>

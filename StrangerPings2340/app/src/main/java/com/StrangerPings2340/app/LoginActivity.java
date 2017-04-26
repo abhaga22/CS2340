@@ -40,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         inputPassword = (EditText) findViewById(R.id.password);
         Button btnSignup = (Button) findViewById(R.id.btn_signup);
         Button btnLogin = (Button) findViewById(R.id.btn_login);
+        Button btnReset = (Button) findViewById(R.id.btn_reset);
 
 
         //Get Firebase auth instance
@@ -49,6 +50,16 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this, SignupActivity.class));
+                overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
+
+            }
+        });
+
+        btnReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, ResetActivity.class));
+                overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
             }
         });
 
@@ -88,6 +99,7 @@ public class LoginActivity extends AppCompatActivity {
                                 } else {
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                     startActivity(intent);
+                                    overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
                                     finish();
                                 }
                             }
